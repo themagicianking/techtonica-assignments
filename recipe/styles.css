@@ -1,10 +1,14 @@
 body {
-  background-color: #ffec99;
+  background-color: #d9ff92;
 }
 
 h1, h2, p, ol, ul {
-  color: #900C3F;
+  color: #a61c00;
   font-family: "Poppins", sans-serif;
+}
+
+a {
+  color: #476d00;
 }
 
 .description {
@@ -21,4 +25,11 @@ h1, h2, p, ol, ul {
   width: 600px;
   float: left;
   margin-left: 30px;
+}
+
+img {
+  border-style: solid;
+  border-width: thick;
+  border-color: #a6ff00;
+  border-radius: 10px;
 }
