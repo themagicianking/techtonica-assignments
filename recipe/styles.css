@@ -6,3 +6,7 @@ h1, p {
   color: #900C3F;
   font-family: "Poppins", sans-serif;
 }
+
+.description {
+  width: 600px;
+}
