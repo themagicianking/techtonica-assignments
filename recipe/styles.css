@@ -2,7 +2,7 @@ body {
   background-color: #ffec99;
 }
 
-h1, p {
+h1, h2, p, ol, ul {
   color: #900C3F;
   font-family: "Poppins", sans-serif;
 }
