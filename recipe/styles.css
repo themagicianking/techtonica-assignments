@@ -2,6 +2,10 @@ body {
   background-color: #d9ff92;
 }
 
+.checked {
+  text-decoration: line-through;
+}
+
 h1, h2, p, ol, ul {
   color: #a61c00;
   font-family: "Poppins", sans-serif;
@@ -9,10 +13,6 @@ h1, h2, p, ol, ul {
 
 a {
   color: #476d00;
-}
-
-.checked {
-  text-decoration: line-through;
 }
 
 .description {
