@@ -11,6 +11,10 @@ a {
   color: #476d00;
 }
 
+.checked {
+  text-decoration: line-through;
+}
+
 .description {
   width: 600px;
 }
