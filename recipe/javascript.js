@@ -16,7 +16,7 @@ function addIngredientsToList(ingredients) {
     // toggles strikethrough on and off when checkbox is clicked
     checkbox.addEventListener("click", addStrikeThrough)
     function addStrikeThrough() {
-      this.parentNode.classList.toggle("checked");
+      this.parentNode.getElementsByTagName("label").item(0).classList.toggle("checked");
     };
     
     // adds ingredient string to each list item as a label
@@ -28,6 +28,7 @@ function addIngredientsToList(ingredients) {
     // adds checkbox and label to list item
     newListItem.appendChild(checkbox);
     newListItem.appendChild(label);
+    console.log("it's running");
   });
 };
 
