@@ -1,5 +1,54 @@
+/* flexbox stuff */
+
 body {
+  display: flex;
+  flex-direction: column;
   background-color: #d9ff92;
+}
+
+.navbar {
+  display: flex;
+  padding: 10px;
+  border-color: #a6ff00;
+  background-color: #FFC300
+}
+
+.border-bottom {
+  border-bottom: thick solid #a6ff00 !important;
+}
+
+.main-body {
+  display: flex;
+}
+
+.blurb {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  width: 650px;
+}
+
+#credit {
+  text-align: center;
+  margin-top: 10px;
+  width: 600px;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+}
+
+.ingredients, .steps {
+  width: 600px;
+}
+
+/* stylings */
+
+input {
+  margin-right: 10px;
 }
 
 .checked {
