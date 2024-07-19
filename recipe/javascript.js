@@ -7,7 +7,7 @@ function addIngredientsToList(ingredients) {
   ingredients.forEach((ingredient) => {
     //creates list item for each ingredient and adds to the DOM
     let newListItem = document.createElement("li");
-    document.querySelector("ul").appendChild(newListItem);
+    document.getElementById("ingredient-list").appendChild(newListItem);
     
     // creates checkbox element
     let checkbox = document.createElement("input");
