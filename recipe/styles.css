@@ -101,3 +101,38 @@ img,
 .checked {
   text-decoration: line-through;
 }
+
+
+/* mobile styling */
+
+@media only screen and (max-width: 600px) {
+  /* flexbox */
+  .main-body {
+    flex-direction: column;
+  }
+
+body, .main-body {
+  width: 100vw;
+}
+
+.main-body {
+  align-items: center;
+}
+
+.navbar {
+  justify-content: center;
+}
+
+img, .description, .blurb,
+.ingredients,
+.steps,
+#credit {
+  width: 75vw;
+}
+
+.blurb, .instructions {
+  margin: 25px;
+  margin-bottom: 0;
+}
+
+}
