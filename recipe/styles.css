@@ -43,6 +43,10 @@ input {
   padding: 30px;
 }
 
+#title {
+  margin-left: 10px;
+}
+
 #credit {
   margin-top: 10px;
   text-align: center;
@@ -66,6 +70,15 @@ ul,
 
 a {
   color: #476d00;
+}
+
+a:hover {
+  text-shadow: 0 0 10px #a6ff00;
+  color:#ffc300;
+}
+
+a:visited {
+  color:#a61c00;
 }
 
 .navbar,

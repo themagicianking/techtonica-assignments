@@ -16,21 +16,21 @@ function addIngredientsToList(ingredients) {
     // toggles strikethrough on and off when checkbox is clicked
     checkbox.addEventListener("click", addStrikeThrough)
     function addStrikeThrough() {
-      this.parentNode.getElementsByTagName("label").item(0).classList.toggle("checked");
+      this.parentNode.classList.toggle("checked");
     };
+
+    // creates label element and adds checkbox to label
+    let label = document.createElement("label");
+    label.appendChild(checkbox);
     
     // adds ingredient string to each list item as a label
-    let label = document.createElement("label");
     label.appendChild(
       document.createTextNode(ingredient)
     );
     
-    // adds checkbox and label to list item
-    newListItem.appendChild(checkbox);
+    // adds label to list item
     newListItem.appendChild(label);
-    console.log("it's running");
   });
 };
 
 addIngredientsToList(tomatoSandwichIngredients);
-
