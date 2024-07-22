@@ -1,61 +1,65 @@
-/* flexbox stuff */
+/* display structure */
 
-body {
-  display: flex;
-  flex-direction: column;
-  background-color: #d9ff92;
-}
-
-.navbar {
-  display: flex;
-  padding: 10px;
-  border-color: #a6ff00;
-  background-color: #FFC300
-}
-
-.border-bottom {
-  border-bottom: thick solid #a6ff00 !important;
-}
-
-.main-body {
-  display: flex;
-}
-
-.blurb {
-  display: flex;
-  flex-direction: column;
-  margin: 50px;
-  width: 650px;
-}
-
-#credit {
-  text-align: center;
-  margin-top: 10px;
-  width: 600px;
-}
-
+/* flexbox */
+body,
+.navbar,
+.main-body,
+.blurb,
 .instructions {
   display: flex;
+}
+
+body,
+.blurb,
+.instructions {
   flex-direction: column;
-  align-items: center;
-  margin: 50px;
 }
 
-.ingredients, .steps {
-  width: 600px;
-}
-
-/* stylings */
-
+/* positioning */
 input {
   margin-right: 10px;
 }
 
-.checked {
-  text-decoration: line-through;
+.blurb {
+  margin: 50px;
+  width: 650px;
 }
 
-h1, h2, p, ol, ul {
+.instructions {
+  align-items: center;
+  margin: 50px;
+}
+
+.description,
+.ingredients,
+.steps,
+#credit {
+  width: 600px;
+}
+
+.steps,
+.ingredients {
+  margin-bottom: 15px;
+  padding: 30px;
+}
+
+#credit {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* stylings */
+
+body {
+  background-color: #d9ff92;
+}
+
+h1,
+h2,
+p,
+ol,
+ul,
+#title {
   color: #a61c00;
   font-family: "Poppins", sans-serif;
 }
@@ -64,38 +68,23 @@ a {
   color: #476d00;
 }
 
-.description {
-  width: 600px;
+.navbar,
+.steps,
+.ingredients {
+  background-color: #ffc300;
 }
 
-.left {
-  width: 600px;
-  float: left;
+.border-bottom {
+  border-bottom: thick solid #a6ff00 !important;
 }
 
-.right {
-  width: 600px;
-  float: left;
-  margin-left: 30px;
-}
-
-img {
-border-style: solid;
-border-width: thick;
-border-color: #a6ff00;
-border-radius: 10px;
-}
-
-.steps, .ingredients {
-  border-style: solid;
-  border-width: thick;
-  border-color: #a6ff00;
+img,
+.steps,
+.ingredients {
+  border: thick solid #a6ff00;
   border-radius: 10px;
-  background-color: #FFC300;
-  padding: 30px;
-  margin-bottom: 15px;
 }
 
-#title {
-  color: #a61c00;
+.checked {
+  text-decoration: line-through;
 }
