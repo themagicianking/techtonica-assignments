@@ -136,9 +136,8 @@ img,
   }
 
   /* positioning */
-  body,
-  .main-body {
-    width: 100vw;
+  body, .main-body {
+    min-width: 300px;
   }
 
   img,
@@ -148,6 +147,7 @@ img,
   .steps,
   #credit {
     width: 90vw;
+    min-width: 275px;
   }
 
   .blurb,
