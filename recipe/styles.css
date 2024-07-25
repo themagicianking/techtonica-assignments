@@ -3,10 +3,22 @@
 /* flexbox */
 body,
 .navbar,
-.main-body,
 .blurb,
 .instructions {
   display: flex;
+}
+
+.main-body {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-width: 300px;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 body,
@@ -29,11 +41,15 @@ img {
   max-width: 100%;
 }
 
-.main-body {
-  width: auto;
+body {
+  min-width: 300px;
 }
 
-.blurb, .instructions {
+.blurb {
+  margin: 5vw;
+}
+
+.instructions {
   margin: 5vw;
   max-width: 40vw;
 }
@@ -43,7 +59,7 @@ img {
 }
 
 .instructions {
-  align-items: center;
+  align-items: left;
   margin: 50px;
 }
 
@@ -52,6 +68,7 @@ img {
 .steps,
 #credit {
   max-width: 600px;
+  min-width: 400px;
 }
 
 .steps,
@@ -121,9 +138,9 @@ img,
 
 /* mobile display structure */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   /* flexbox */
-  .main-body {
+  /* .main-body {
     flex-direction: column;
   }
 
@@ -133,11 +150,6 @@ img,
 
   .navbar {
     justify-content: center;
-  }
-
-  /* positioning */
-  body, .main-body {
-    min-width: 300px;
   }
 
   img,
@@ -154,5 +166,5 @@ img,
   .instructions {
     margin-bottom: 0;
     max-width: 90vw;
-  }
+  } */
 }
