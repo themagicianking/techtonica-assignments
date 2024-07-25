@@ -57,8 +57,7 @@ a:visited {
 .blurb {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  margin: 5vw;
+  margin: 30px;
 }
 
 .description {
@@ -66,14 +65,19 @@ a:visited {
   min-width: 400px;
 }
 
+.instructions-container {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  min-width: 40vw;
+}
+
 .instructions {
   display: flex;
   flex-direction: column;
-  flex: 1;
   align-items: left;
-  margin: 5vw;
-  max-width: 600px;
-  min-width: 400px;
+  margin: 15px;
+  max-width: 500px;
   padding: 30px;
   border: thick solid #a6ff00;
   border-radius: 10px;
