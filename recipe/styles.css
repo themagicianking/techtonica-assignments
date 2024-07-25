@@ -147,12 +147,12 @@ img,
   .ingredients,
   .steps,
   #credit {
-    width: 75vw;
+    width: 90vw;
   }
 
   .blurb,
   .instructions {
-    margin: 25px;
     margin-bottom: 0;
+    max-width: 90vw;
   }
 }
