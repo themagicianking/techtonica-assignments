@@ -1,37 +1,10 @@
-/* display structure */
-
-/* flexbox */
-body,
-.navbar,
-.blurb,
-.instructions {
+body {
   display: flex;
-}
-
-.main-body {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  flex-direction: column;
   min-width: 300px;
+  background-color: #d9ff92;
 }
 
-.instructions {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-body,
-.blurb,
-.instructions {
-  flex-direction: column;
-}
-
-.blurb, .instructions {
-  flex: 1;
-}
-
-/* positioning */
 input {
   margin-right: 10px;
 }
@@ -39,65 +12,15 @@ input {
 img {
   min-width: 30vw;
   max-width: 100%;
-}
-
-body {
-  min-width: 300px;
-}
-
-.blurb {
-  margin: 5vw;
-}
-
-.instructions {
-  margin: 5vw;
-  max-width: 40vw;
-}
-
-.ingredients {
-  width: 100%;
-}
-
-.instructions {
-  align-items: left;
-  margin: 50px;
-}
-
-.description,
-.ingredients,
-.steps,
-#credit {
-  max-width: 600px;
-  min-width: 400px;
-}
-
-.steps,
-.ingredients {
-  margin-bottom: 15px;
-  padding: 30px;
-}
-
-#title {
-  margin-left: 10px;
-}
-
-#credit {
-  margin-top: 10px;
-  text-align: center;
-}
-
-/* stylings */
-
-body {
-  background-color: #d9ff92;
+  border: thick solid #a6ff00;
+  border-radius: 10px;
 }
 
 h1,
 h2,
 p,
 ol,
-ul,
-#title {
+ul {
   color: #a61c00;
   font-family: "Poppins", sans-serif;
 }
@@ -115,9 +38,8 @@ a:visited {
   color: #a61c00;
 }
 
-.navbar,
-.steps,
-.ingredients {
+.navbar {
+  display: flex;
   background-color: #ffc300;
 }
 
@@ -125,15 +47,54 @@ a:visited {
   border-bottom: thick solid #a6ff00 !important;
 }
 
-img,
-.steps,
-.ingredients {
+.main-body {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-width: 300px;
+}
+
+.blurb {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 5vw;
+}
+
+.description {
+  max-width: 600px;
+  min-width: 400px;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: left;
+  margin: 5vw;
+  max-width: 600px;
+  min-width: 400px;
+  padding: 30px;
   border: thick solid #a6ff00;
   border-radius: 10px;
+  background-color: #ffc300;
 }
 
 .checked {
   text-decoration: line-through;
+}
+
+#credit {
+  max-width: 600px;
+  min-width: 400px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#title {
+  margin-left: 10px;
+  color: #a61c00;
+  font-family: "Poppins", sans-serif;
 }
 
 /* mobile display structure */
