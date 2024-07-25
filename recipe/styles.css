@@ -15,14 +15,31 @@ body,
   flex-direction: column;
 }
 
+.blurb, .instructions {
+  flex: 1;
+}
+
 /* positioning */
 input {
   margin-right: 10px;
 }
 
-.blurb {
-  margin: 50px;
-  width: 650px;
+img {
+  min-width: 30vw;
+  max-width: 100%;
+}
+
+.main-body {
+  width: auto;
+}
+
+.blurb, .instructions {
+  margin: 5vw;
+  max-width: 40vw;
+}
+
+.ingredients {
+  width: 100%;
 }
 
 .instructions {
@@ -34,7 +51,7 @@ input {
 .ingredients,
 .steps,
 #credit {
-  width: 600px;
+  max-width: 600px;
 }
 
 .steps,
@@ -74,11 +91,11 @@ a {
 
 a:hover {
   text-shadow: 0 0 10px #a6ff00;
-  color:#ffc300;
+  color: #ffc300;
 }
 
 a:visited {
-  color:#a61c00;
+  color: #a61c00;
 }
 
 .navbar,
@@ -102,8 +119,7 @@ img,
   text-decoration: line-through;
 }
 
-
-/* mobile styling */
+/* mobile display structure */
 
 @media only screen and (max-width: 600px) {
   /* flexbox */
@@ -111,28 +127,32 @@ img,
     flex-direction: column;
   }
 
-body, .main-body {
-  width: 100vw;
-}
+  .main-body {
+    align-items: center;
+  }
 
-.main-body {
-  align-items: center;
-}
+  .navbar {
+    justify-content: center;
+  }
 
-.navbar {
-  justify-content: center;
-}
+  /* positioning */
+  body,
+  .main-body {
+    width: 100vw;
+  }
 
-img, .description, .blurb,
-.ingredients,
-.steps,
-#credit {
-  width: 75vw;
-}
+  img,
+  .description,
+  .blurb,
+  .ingredients,
+  .steps,
+  #credit {
+    width: 75vw;
+  }
 
-.blurb, .instructions {
-  margin: 25px;
-  margin-bottom: 0;
-}
-
+  .blurb,
+  .instructions {
+    margin: 25px;
+    margin-bottom: 0;
+  }
 }
