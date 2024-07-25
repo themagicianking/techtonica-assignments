@@ -10,7 +10,7 @@ input {
 }
 
 img {
-  min-width: 30vw;
+  min-width: 300px;
   max-width: 100%;
   border: thick solid #a6ff00;
   border-radius: 10px;
@@ -23,6 +23,7 @@ ol,
 ul {
   color: #a61c00;
   font-family: "Poppins", sans-serif;
+  text-wrap: wrap;
 }
 
 a {
@@ -62,7 +63,7 @@ a:visited {
 
 .description {
   max-width: 600px;
-  min-width: 400px;
+  min-width: 300px;
 }
 
 .instructions-container {
@@ -70,13 +71,15 @@ a:visited {
   flex: 1;
   flex-wrap: wrap;
   min-width: 40vw;
+  padding: 20px;
 }
 
 .instructions {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: left;
-  margin: 15px;
+  margin: 10px;
   min-width: 300px;
   max-width: 500px;
   padding: 30px;
@@ -91,7 +94,7 @@ a:visited {
 
 #credit {
   max-width: 600px;
-  min-width: 400px;
+  min-width: 300px;
   margin-top: 10px;
   text-align: center;
 }
