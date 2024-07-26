@@ -98,6 +98,7 @@ a:visited {
   list-style: none;
   justify-content: space-evenly;
   align-items: center;
+  width: 100%;
 }
 
 #credit {
@@ -118,6 +119,5 @@ a:visited {
 @media only screen and (max-width: 991px) {
   .hidden-links {
     display: flex;
-    width: 100%;
   }
 }
