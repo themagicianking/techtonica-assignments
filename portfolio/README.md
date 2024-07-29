@@ -1,5 +1,8 @@
 # Portfolio
 
+## About
+This portfolio is an assignment for Techtonica's h2 2024 cohort.
+
 ## Requirements
 ### HTML
 - Photo []
