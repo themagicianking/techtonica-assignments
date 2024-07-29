@@ -1,4 +1,48 @@
 body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   min-height: 100vh;
   background-image: linear-gradient(#b6fffb, #17bebb, #19454d);
+}
+
+h1, h2, h3 {
+  font-family: "Julius Sans One", sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 800;
+}
+
+ul, p {
+  font-family: "Cantarell", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #b6fffb;
+  border-radius: 100%;
+}
+
+.social-media {
+  width: 200px;
+  height: 200px;
+}
+
+.skills {
+  width: 300px;
+  height: 300px;
+}
+
+.contact {
+  width: 150px;
+  height: 150px;
 }
