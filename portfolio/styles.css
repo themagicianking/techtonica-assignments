@@ -1,8 +1,8 @@
 body {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template: 25% 25% 25% 25% / 25% 25% 25% 25%;
   min-height: 100vh;
+  min-width: 100vw;
   background-image: linear-gradient(#b6fffb, #17bebb, #19454d);
 }
 
@@ -23,6 +23,10 @@ ul {
   list-style: none;
 }
 
+header {
+  grid-area: 1 / 1 / 2 / 4;
+}
+
 .bubble {
   display: flex;
   flex-direction: column;
@@ -33,16 +37,28 @@ ul {
 }
 
 .social-media {
+  grid-area: 1 / 4 / 2 / 5;
   width: 200px;
   height: 200px;
 }
 
 .skills {
+  grid-area: 2 / 1 / 4 / 2;
   width: 300px;
   height: 300px;
 }
 
+.projects {
+  grid-area: 2 / 2 / 4 / 4;
+  border: thin black dotted;
+}
+
 .contact {
+  grid-area: 4 / 2 / 5 / 3;
   width: 150px;
   height: 150px;
+}
+
+.about {
+  grid-area: 4 / 4 / 5 / 5;
 }
