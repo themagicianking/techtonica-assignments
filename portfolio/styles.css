@@ -1,9 +1,18 @@
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(#B6FFFB, #17BEBB, #19454D);
+}
+
+.main-container {
   display: grid;
   grid-template: 25% 25% 25% 25% / 25% 25% 25% 25%;
-  min-height: 100vh;
-  min-width: 100vw;
-  background-image: linear-gradient(#b6fffb, #17bebb, #19454d);
+  column-gap: 5px;
+  width: 90%;
+  height: 90%;
 }
 
 h1, h2, h3 {
@@ -15,12 +24,13 @@ h1 {
   font-weight: 800;
 }
 
-ul, p {
+a, ul, p {
   font-family: "Cantarell", sans-serif;
 }
 
 ul {
   list-style: none;
+  padding: 0;
 }
 
 header {
@@ -32,33 +42,62 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #b6fffb;
+  background-color: #B6FFFB;
   border-radius: 100%;
+  margin: 20px;
 }
 
 .social-media {
   grid-area: 1 / 4 / 2 / 5;
-  width: 200px;
-  height: 200px;
-}
-
-.skills {
-  grid-area: 2 / 1 / 4 / 2;
   width: 300px;
   height: 300px;
 }
 
+.links {
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border-color: #FCDC5F;
+  border-radius: 100%;
+  margin: 10px;
+}
+
+.skills {
+  grid-area: 2 / 1 / 4 / 2;
+  display: flex;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+}
+
 .projects {
   grid-area: 2 / 2 / 4 / 4;
-  border: thin black dotted;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 100px;
 }
 
 .contact {
   grid-area: 4 / 2 / 5 / 3;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
+  text-align: center;
 }
 
 .about {
   grid-area: 4 / 4 / 5 / 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#headshot {
+  border-radius: 100%;
+  border-color: #FCDC5F;
 }
