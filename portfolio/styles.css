@@ -89,7 +89,7 @@ header {
   text-align: center;
 }
 
-.about {
+#about {
   grid-area: 4 / 4 / 5 / 5;
   display: flex;
   flex-direction: row;
