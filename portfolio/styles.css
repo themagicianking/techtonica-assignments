@@ -9,7 +9,7 @@ body {
 
 .main-container {
   display: grid;
-  grid-template: 25% 25% 25% 25% / 25% 25% 25% 25%;
+  grid-template: 12.5% 12.5% 25% 12.5% 12.5% 25% / 25% 25% 25% 25%;
   column-gap: 5px;
   width: 90%;
   height: 90%;
@@ -20,11 +20,11 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 800;
 }
 
-a, ul, p {
+a, ul, p, #send {
   font-family: "Cantarell", sans-serif;
 }
 
@@ -83,14 +83,42 @@ header {
 }
 
 .contact {
-  grid-area: 4 / 2 / 5 / 3;
-  width: 200px;
-  height: 200px;
+  grid-area: 5 / 2 / 5 / 3;
+  display: flex;
+  width: 300px;
+  height: 300px;
   text-align: center;
 }
 
+#contact-header {
+  margin-top: 40px;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+#message {
+  display: flex;
+  flex-wrap: wrap;
+  resize: none;
+  height: 50%;
+  margin: 10px;
+}
+
+#send {
+  width: 30%;
+  border-radius: 5px;
+  border-color: #19454D;
+  color: #19454D;
+  background-color: #FCDC5F;
+}
+
 #about {
-  grid-area: 4 / 4 / 5 / 5;
+  grid-area: 7 / 4 / 5 / 5;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -98,6 +126,7 @@ header {
 }
 
 #headshot {
+  width: 300px;
+  border: thick solid #19454D;
   border-radius: 100%;
-  border-color: #FCDC5F;
 }
