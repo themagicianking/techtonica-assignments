@@ -127,6 +127,6 @@ header {
 
 #headshot {
   width: 300px;
+  border: thick solid #19454D;
   border-radius: 100%;
-  border-color: #FCDC5F;
 }
