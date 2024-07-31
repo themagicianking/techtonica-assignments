@@ -24,7 +24,7 @@ h1 {
   font-weight: 800;
 }
 
-a, ul, p {
+a, ul, p, #send {
   font-family: "Cantarell", sans-serif;
 }
 
@@ -109,7 +109,11 @@ header {
 }
 
 #send {
-  width: 25%;
+  width: 30%;
+  border-radius: 5px;
+  border-color: #19454D;
+  color: #19454D;
+  background-color: #FCDC5F;
 }
 
 #about {
