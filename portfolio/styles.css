@@ -104,6 +104,7 @@ header {
 #message {
   display: flex;
   flex-wrap: wrap;
+  resize: none;
   height: 50%;
   margin: 10px;
 }
