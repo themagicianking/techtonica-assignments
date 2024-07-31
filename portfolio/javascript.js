@@ -26,3 +26,14 @@ populateSection(projectList, "projects");
 let aboutBlurb = document.createElement("p");
 aboutBlurb.textContent = blurb;
 document.getElementById("about").prepend(aboutBlurb);
+
+// converting submitted message into email message
+
+function addMessage(event) {
+  const userMessage = document.getElementById("message").value;
+
+  window.open(`mailto:tmoonder@gmail.com?subject=Portfolio&body=${userMessage}`)
+  event.preventDefault();
+}
+
+document.getElementById("contact-form").addEventListener("submit", addMessage);
