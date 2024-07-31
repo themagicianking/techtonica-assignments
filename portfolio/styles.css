@@ -84,9 +84,21 @@ header {
 
 .contact {
   grid-area: 4 / 2 / 5 / 3;
-  width: 200px;
-  height: 200px;
+  justify-self: flex-start;
+  width: 225px;
+  height: 225px;
   text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-grow: 1;
+}
+
+#message {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 60%;
 }
 
 #about {
