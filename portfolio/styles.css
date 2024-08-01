@@ -107,6 +107,12 @@ header {
   resize: none;
   height: 50%;
   margin: 10px;
+  border-radius: 5px;
+  border: thick solid #17BEBB;
+}
+
+#message:focus {
+  outline: 1px solid #FCDC5F;
 }
 
 #send {
