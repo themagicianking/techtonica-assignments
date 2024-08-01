@@ -14,15 +14,15 @@ This portfolio is an assignment for Techtonica's h2 2024 cohort.
 - Semantic Tags [x]
 - Links to social media accounts [x]
 - Contact information for yourself [x]
-- Contact form with required fields []
-  - contact form asking for a name (required) []
+- Contact form with required fields [x]
+  - contact form asking for a name (required) [x]
   - email (required) [x]
   - phone number (not required) []
   - address (not required) []
 
 ### CSS
 
-- At least 3 style properties applied to text []
+- At least 3 style properties applied to text [x]
 - Border [x]
 - Use of columns []
 - Use of at least 1 ID [x]
