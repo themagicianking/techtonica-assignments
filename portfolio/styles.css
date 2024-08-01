@@ -13,6 +13,7 @@ body {
   column-gap: 5px;
   width: 90%;
   height: 90%;
+  margin-bottom: 50px;
 }
 
 h1 {
@@ -165,7 +166,6 @@ header {
   color:#B6FFFB;
   text-shadow: 0px 1px 0px #FCDC5F,
   0px 2px 0px #F4857B;
-  margin-bottom: 50px;
 }
 
 #headshot {
