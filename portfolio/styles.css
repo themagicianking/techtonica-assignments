@@ -154,6 +154,7 @@ header {
   color:#B6FFFB;
   text-shadow: 0px 1px 0px #FCDC5F,
   0px 2px 0px #F4857B;
+  margin-bottom: 50px;
 }
 
 #headshot {
@@ -163,7 +164,7 @@ header {
   background-color: #B6FFFB;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
   .main-container {
     display: flex;
     flex-wrap: wrap;
