@@ -96,6 +96,7 @@ header {
   justify-content: flex-end;
   text-align: right;
   margin-left: 20%;
+  margin-right: 10%;
 }
 
 .contact {
@@ -166,7 +167,7 @@ header {
   }
 
   .projects {
-    margin-left: 0px;
+    margin: 0px;
   }
 
   #about {
