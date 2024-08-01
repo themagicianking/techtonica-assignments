@@ -5,6 +5,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(#B6FFFB, #17BEBB, #19454D);
+  background-attachment: fixed;
 }
 
 .main-container {
@@ -15,7 +16,11 @@ body {
   height: 90%;
 }
 
-h1, h2, h3 {
+h1 {
+  font-family: "Bungee Shade", sans-serif;
+}
+
+h2, h3 {
   font-family: "Bungee Inline", sans-serif;
   color: #19454D;
 }
@@ -30,7 +35,7 @@ h3 {
 }
 
 .project-display {
-  font-family: "Bungee Shade", sans-serif;
+  font-family: "Bungee Inline", sans-serif;
   font-size: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -39,7 +44,7 @@ h3 {
   -7px 10px 1px #FCDC5F;
 }
 
-a, ul, p, #send {
+a, ul, p, form, #send {
   font-family: "M PLUS Code Latin", monospace;
 }
 
@@ -92,18 +97,19 @@ header {
 .projects {
   grid-area: 2 / 2 / 4 / 4;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-right: 100px;
+  justify-content: flex-end;
   text-align: right;
+  margin-left: 20%;
+  margin-right: 10%;
 }
 
 .contact {
-  grid-area: 5 / 2 / 5 / 3;
+  grid-area: 5 / 1 / 5 / 3;
   display: flex;
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   text-align: center;
+  margin-left: 25%;
 }
 
 #contact-header {
@@ -121,7 +127,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   resize: none;
-  height: 50%;
+  height: 30%;
   margin: 10px;
   border-radius: 5px;
   border: thick solid #17BEBB;
@@ -129,6 +135,12 @@ header {
 
 #message:focus {
   outline: 1px solid #FCDC5F;
+}
+
+#name {
+  border-radius: 5px;
+  border: thick solid #17BEBB;
+  margin-bottom: 10px;
 }
 
 #send {
@@ -147,6 +159,9 @@ header {
   align-items: flex-end;
   text-align: right;
   color:#B6FFFB;
+  text-shadow: 0px 1px 0px #FCDC5F,
+  0px 2px 0px #F4857B;
+  margin-bottom: 50px;
 }
 
 #headshot {
@@ -154,4 +169,59 @@ header {
   border-radius: 100%;
   border: 4px solid #B6FFFB;
   background-color: #B6FFFB;
+}
+
+@media screen and (max-width: 1400px) {
+  .main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .projects {
+    margin: 0px;
+  }
+
+  #about {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 872px) {
+  header {
+    text-align: center;
+  }
+
+  .bubble {
+    background-color: inherit;
+    height: auto;
+  }
+
+  .projects {
+    text-align: center;
+  }
+
+  .contact {
+    margin: 0px;
+  }
+
+  #contact-header {
+    margin: 0px;
+  }
+
+  #message {
+    height: 200px;
+    width: 150%;
+  }
+
+  #about {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #headshot {
+    margin-bottom: 40px;
+  }
 }
