@@ -16,7 +16,11 @@ body {
   height: 90%;
 }
 
-h1, h2, h3 {
+h1 {
+  font-family: "Bungee Shade", sans-serif;
+}
+
+h2, h3 {
   font-family: "Bungee Inline", sans-serif;
   color: #19454D;
 }
@@ -31,7 +35,7 @@ h3 {
 }
 
 .project-display {
-  font-family: "Bungee Shade", sans-serif;
+  font-family: "Bungee Inline", sans-serif;
   font-size: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -180,7 +184,7 @@ header {
   header {
     text-align: center;
   }
-  
+
   .bubble {
     background-color: inherit;
     height: auto;
