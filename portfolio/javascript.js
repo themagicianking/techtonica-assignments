@@ -45,11 +45,15 @@ document.getElementById("about").prepend(aboutBlurb);
 
 // converting submitted message into email message
 
+const contactForm = document.getElementById("contact-form")
+
 function addMessage(event) {
   const userMessage = document.getElementById("message").value;
+  const name = document.getElementById("name").value;
 
-  window.open(`mailto:tmoonder@gmail.com?subject=Portfolio&body=${userMessage}`)
+  window.open(`mailto:tmoonder@gmail.com?subject=${name}%20re:%20Portfolio&body=${userMessage}`)
   event.preventDefault();
-}
+  contactForm.reset();
+};
 
-document.getElementById("contact-form").addEventListener("submit", addMessage);
+contactForm.addEventListener("submit", addMessage);
