@@ -24,6 +24,10 @@ h1 {
   font-weight: 800;
 }
 
+h3 {
+  margin-top: 40px;
+}
+
 a, ul, p, #send {
   font-family: "Cantarell", sans-serif;
 }
@@ -42,6 +46,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: #B6FFFB;
   border-radius: 100%;
   margin: 20px;
@@ -68,10 +73,9 @@ header {
 
 .skills {
   grid-area: 2 / 1 / 4 / 2;
-  display: flex;
+  justify-content: flex-start;
   width: 400px;
   height: 400px;
-  text-align: center;
 }
 
 .projects {
