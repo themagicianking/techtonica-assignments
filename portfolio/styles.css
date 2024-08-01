@@ -61,7 +61,7 @@ header {
 .icon {
   width: 60px;
   height: 60px;
-  border-color: #FCDC5F;
+  border: thick solid #FCDC5F;
   border-radius: 100%;
   margin: 10px;
 }
@@ -116,11 +116,11 @@ header {
 }
 
 #send {
-  width: 30%;
+  width: 40%;
   border-radius: 5px;
-  border-color: #19454D;
-  color: #19454D;
-  background-color: #FCDC5F;
+  border: thick solid #FCDC5F;
+  color: #B6FFFB;
+  background-color: #19454D;
 }
 
 #about {
