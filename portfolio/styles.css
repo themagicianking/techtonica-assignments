@@ -36,7 +36,8 @@ h3 {
   text-decoration: none;
   font-weight: bold;
   color: #19454D;
-  text-shadow: -5px 5px 1px #F4857B;
+  text-shadow: -5px 5px 1px #F4857B,
+  -7px 10px 1px #FCDC5F;
 }
 
 a, ul, p, #send {
