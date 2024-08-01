@@ -104,11 +104,12 @@ header {
 }
 
 .contact {
-  grid-area: 5 / 2 / 5 / 3;
+  grid-area: 5 / 1 / 5 / 3;
   display: flex;
   width: 350px;
   height: 350px;
   text-align: center;
+  margin-left: 25%;
 }
 
 #contact-header {
@@ -199,6 +200,10 @@ header {
 
   .projects {
     text-align: center;
+  }
+
+  .contact {
+    margin: 0px;
   }
 
   #contact-header {
