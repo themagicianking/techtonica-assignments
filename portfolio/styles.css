@@ -124,11 +124,12 @@ header {
 }
 
 #about {
-  grid-area: 7 / 4 / 5 / 5;
+  grid-area: 7 / 3 / 5 / 5;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
+  color:#B6FFFB;
 }
 
 #headshot {
