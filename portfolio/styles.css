@@ -177,6 +177,10 @@ header {
 }
 
 @media screen and (max-width: 872px) {
+  header {
+    text-align: center;
+  }
+  
   .bubble {
     background-color: inherit;
     height: auto;
