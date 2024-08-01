@@ -40,7 +40,7 @@ h3 {
 }
 
 a, ul, p, #send {
-  font-family: "Cantarell", sans-serif;
+  font-family: "M PLUS Code Latin", monospace;
 }
 
 ul {
@@ -145,6 +145,7 @@ header {
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
+  text-align: right;
   color:#B6FFFB;
 }
 
