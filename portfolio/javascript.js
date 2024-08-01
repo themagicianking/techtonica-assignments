@@ -1,7 +1,7 @@
 // arrays to hold list items for various sections
 const skillList = ["HTML & CSS", "Git & GitHub", "JavaScript", "Ruby", "Python"];
 const languageList = ["English (native)", "American Sign Language (conversational)"];
-const projectData = [{ name: "Recipe Page", description: "Here is a description.", link: "https://github.com/themagicianking/techtonica-assignments/tree/main/recipe"}]
+const projectData = [{ name: "Recipe Page", description: "A simple, highly responsive recipe site (HTML, CSS, JS, Bootstrap)", link: "https://github.com/themagicianking/techtonica-assignments/tree/main/recipe"}, {name: "Example Project", description: "An example project description.", link: "google.com"}]
 const blurb = "I am a software developer, rock climber, animal lover, and fiction writer."
 
 // populateSection adds items dynamically to each section
@@ -24,7 +24,7 @@ function populateProjects(projectData) {
   let projectList = [];
 
   projectData.forEach((project) => {
-    let htmlContent = `<a href=${project.link}>${project.name}</a><p>${project.description}`
+    let htmlContent = `<a class="project-display" href=${project.link}>${project.name}</a><p>${project.description}`
     projectList.push(htmlContent);
   });
 
