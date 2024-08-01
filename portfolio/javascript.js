@@ -24,7 +24,7 @@ function populateProjects(projectData) {
   let projectList = [];
 
   projectData.forEach((project) => {
-    let htmlContent = `<a href=${project.link}>${project.name}</a><p>${project.description}`
+    let htmlContent = `<a class="project-display" href=${project.link}>${project.name}</a><p>${project.description}`
     projectList.push(htmlContent);
   });
 

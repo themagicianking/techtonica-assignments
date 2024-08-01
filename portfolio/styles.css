@@ -28,6 +28,16 @@ h3 {
   margin-top: 40px;
 }
 
+.project-display {
+  font-family: "Bungee Shade", sans-serif;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #19454D;
+  text-shadow: -5px 5px 1px #F4857B,
+  -7px 10px 1px #FCDC5F;
+}
+
 a, ul, p, #send {
   font-family: "Cantarell", sans-serif;
 }
@@ -84,6 +94,7 @@ header {
   flex-direction: column;
   align-items: flex-end;
   margin-right: 100px;
+  text-align: right;
 }
 
 .contact {
