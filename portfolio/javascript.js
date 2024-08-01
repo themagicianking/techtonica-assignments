@@ -44,7 +44,6 @@ aboutBlurb.textContent = blurb;
 document.getElementById("about").prepend(aboutBlurb);
 
 // converting submitted message into email message
-
 const contactForm = document.getElementById("contact-form")
 
 function addMessage(event) {
@@ -54,6 +53,6 @@ function addMessage(event) {
   window.open(`mailto:tmoonder@gmail.com?subject=${name}%20re:%20Portfolio&body=${userMessage}`)
   event.preventDefault();
   contactForm.reset();
-};
+}
 
 contactForm.addEventListener("submit", addMessage);

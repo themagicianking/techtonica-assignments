@@ -44,7 +44,7 @@ h3 {
   -7px 10px 1px #FCDC5F;
 }
 
-a, ul, p, form, #send {
+a, ul, p,form, #send {
   font-family: "M PLUS Code Latin", monospace;
 }
 
@@ -104,12 +104,11 @@ header {
 }
 
 .contact {
-  grid-area: 5 / 1 / 5 / 3;
+  grid-area: 5 / 2 / 5 / 3;
   display: flex;
   width: 350px;
   height: 350px;
   text-align: center;
-  margin-left: 25%;
 }
 
 #contact-header {
@@ -138,9 +137,14 @@ header {
 }
 
 #name {
+  resize: none;
   border-radius: 5px;
   border: thick solid #17BEBB;
   margin-bottom: 10px;
+}
+
+#namee:focus {
+  outline: 1px solid #FCDC5F;
 }
 
 #send {
@@ -200,10 +204,6 @@ header {
 
   .projects {
     text-align: center;
-  }
-
-  .contact {
-    margin: 0px;
   }
 
   #contact-header {
