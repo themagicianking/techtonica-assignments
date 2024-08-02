@@ -2,7 +2,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   width: 100vw;
   background-image: linear-gradient(#B6FFFB, #17BEBB, #19454D);
   background-attachment: fixed;
@@ -14,6 +13,7 @@ body {
   column-gap: 5px;
   width: 90%;
   height: 90%;
+  margin-bottom: 50px;
 }
 
 h1 {
@@ -138,9 +138,14 @@ header {
 }
 
 #name {
+  resize: none;
   border-radius: 5px;
   border: thick solid #17BEBB;
   margin-bottom: 10px;
+}
+
+#namee:focus {
+  outline: 1px solid #FCDC5F;
 }
 
 #send {
@@ -161,7 +166,6 @@ header {
   color:#B6FFFB;
   text-shadow: 0px 1px 0px #FCDC5F,
   0px 2px 0px #F4857B;
-  margin-bottom: 50px;
 }
 
 #headshot {

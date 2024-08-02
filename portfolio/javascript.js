@@ -21,15 +21,12 @@ function populateSection(items, section) {
 // populateProjects adds project names, links, and details to the project section
 
 function populateProjects(projectData) {
-  let projectList = [];
+  return projectData.map((project) => projectHTML(project));
+};
 
-  projectData.forEach((project) => {
-    let htmlContent = `<a class="project-display" href=${project.link}>${project.name}</a><p>${project.description}`
-    projectList.push(htmlContent);
-  });
-
-  return projectList;
-}
+function projectHTML(project) {
+  return `<a class="project-display" href=${project.link}>${project.name}</a><p>${project.description}</p>`;
+};
 
 // populates skills section
 populateSection(skillList, "skills");
@@ -44,7 +41,6 @@ aboutBlurb.textContent = blurb;
 document.getElementById("about").prepend(aboutBlurb);
 
 // converting submitted message into email message
-
 const contactForm = document.getElementById("contact-form")
 
 function addMessage(event) {
@@ -54,6 +50,6 @@ function addMessage(event) {
   window.open(`mailto:tmoonder@gmail.com?subject=${name}%20re:%20Portfolio&body=${userMessage}`)
   event.preventDefault();
   contactForm.reset();
-};
+}
 
 contactForm.addEventListener("submit", addMessage);
