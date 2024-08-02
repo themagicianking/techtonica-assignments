@@ -1,4 +1,9 @@
-body {
+.main-container {
+  display: grid;
+  grid-template: 12.5% 12.5% 25% 25% 12.5% 50px / 50px 12.5% 25% 12.5% 25% 12.5% 50px;
+};
+
+/* body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -228,4 +233,4 @@ header {
   #headshot {
     margin-bottom: 40px;
   }
-}
+} */
