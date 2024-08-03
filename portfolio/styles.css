@@ -13,7 +13,7 @@ body {
 }
 
 header {
-  grid-area: 1 / 2 / 2 / 7;
+  grid-area: 1 / 2 / 2 / 8;
 }
 
 .bubble {
@@ -30,6 +30,27 @@ header {
   grid-area: 2 / 3 / 4 / 4;
   width: 400px;
   height: 400px;
+}
+
+.projects {
+  grid-area: 3 / 4 / 5 / 6;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.social-media {
+  grid-area: 2 / 6 / 4 / 7;
+  width: 300px;
+  height: 300px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border: thick solid #FCDC5F;
+  border-radius: 100%;
+  margin: 10px;
 }
 
 /*
@@ -71,32 +92,9 @@ ul {
   padding: 0;
 }
 
-.social-media {
-  grid-area: 1 / 4 / 2 / 5;
-  width: 300px;
-  height: 300px;
-}
-
 .links {
   display: flex;
   justify-content: center;
-}
-
-.icon {
-  width: 60px;
-  height: 60px;
-  border: thick solid #FCDC5F;
-  border-radius: 100%;
-  margin: 10px;
-}
-
-.projects {
-  grid-area: 2 / 2 / 4 / 4;
-  display: flex;
-  justify-content: flex-end;
-  text-align: right;
-  margin-left: 20%;
-  margin-right: 10%;
 }
 
 .contact {
