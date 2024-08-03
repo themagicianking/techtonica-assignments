@@ -3,6 +3,7 @@ body {
   flex-direction: column;
   background-image: linear-gradient(#B6FFFB, #17BEBB, #19454D);
   background-attachment: fixed;
+  align-items: center;
 }
 
 h1 {
@@ -29,6 +30,7 @@ ul {
   display: grid;
   grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr / 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
   align-items: center;
+  width: 100%;
 }
 
 .title {
@@ -186,8 +188,12 @@ ul {
   }
 }
 
-@media screen and (max-width: 872px) {
-  header {
+@media screen and (max-width: 900px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
     text-align: center;
   }
 
@@ -198,10 +204,7 @@ ul {
 
   .projects {
     text-align: center;
-  }
-
-  .contact {
-    margin: 0px;
+    margin-top: 30px;
   }
 
   #contact-header {
@@ -214,12 +217,13 @@ ul {
   }
 
   #about {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     text-align: center;
+    margin-top: 30px;
   }
 
   #headshot {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 }
