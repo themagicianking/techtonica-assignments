@@ -21,6 +21,10 @@ a, ul, p, form, #send {
   font-family: "M PLUS Code Latin", monospace;
 }
 
+p, li {
+  font-size: 20px;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -169,12 +173,20 @@ ul {
   .main-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 50px;
+    justify-content: center;
+    margin: 50px 0px;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .social-media, .skills, .projects, .contact, #about {
+    margin: 30px 50px;
   }
 
   .contact {
-    margin-top: 30px;
+    margin-top: 50px;
   }
 
   #about {
@@ -190,13 +202,13 @@ ul {
 }
 
 @media screen and (max-width: 900px) {
-  .main-container {
+  /* .main-container {
     display: flex;
     flex-direction: column;
   }
   .title {
     text-align: center;
-  }
+  } */
 
   .bubble {
     background-color: inherit;
@@ -205,11 +217,11 @@ ul {
 
   .projects {
     text-align: center;
-    margin-top: 30px;
+    /* margin-top: 30px; */
   }
 
   #contact-header {
-    margin: 0px;
+    /* margin: 0px; */
   }
 
   #message {
