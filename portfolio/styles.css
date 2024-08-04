@@ -54,7 +54,8 @@ ul {
 }
 
 .projects {
-  grid-area: 3 / 7 / 6 / 12;
+  grid-area: 2 / 7 / 6 / 12;
+  align-self: start;
   display: flex;
   justify-content: flex-end;
   text-align: right;
