@@ -1,8 +1,8 @@
 // arrays to hold list items for various sections
 const skillList = ["HTML & CSS", "Git & GitHub", "JavaScript", "Ruby", "Python"];
-const languageList = ["English (native)", "American Sign Language (conversational)"];
+// const languageList = ["English (native)", "American Sign Language (conversational)"];
 const projectData = [{ name: "Recipe Page", description: "A simple, highly responsive recipe site (HTML, CSS, JS, Bootstrap)", link: "https://github.com/themagicianking/techtonica-assignments/tree/main/recipe"}, { name: "Hangman", description: "A command line hangman game (Ruby)", link: "https://github.com/themagicianking/mastermind-2" }, { name: "Tic Tac Toe", description: "A command line tic tac toe game (Ruby)", link: "https://github.com/themagicianking/tic-tac-toe-three" }, { name: "Calculator", description: "A basic calculator page (HTML, CSS, JS)", link: "https://themagicianking.github.io/calculator-two/" }, { name: "Etch a Sketch", description: "An etch a sketch game (HTML, CSS, JS)", link: "https://themagicianking.github.io/etch-a-sketch-two/" }]
-const blurb = "I am a software developer, rock climber, animal lover, and fiction writer."
+const bio = "I am a software developer, rock climber, animal lover, and fiction writer."
 
 // populateSection adds items dynamically to each section
 function populateSection(items, section) {
@@ -30,15 +30,16 @@ function projectHTML(project) {
 
 // populates skills section
 populateSection(skillList, "skills");
-populateSection(languageList, "skills");
+// populateSection(languageList, "skills");
 
 // populates projects section
 populateSection(populateProjects(projectData), "projects");
 
-// add blurb to about section
-let aboutBlurb = document.createElement("p");
-aboutBlurb.textContent = blurb;
-document.getElementById("about").prepend(aboutBlurb);
+// add bio to about section
+let aboutText = document.createElement("p");
+aboutText.setAttribute("id", "bio");
+aboutText.textContent = bio;
+document.getElementById("about").prepend(aboutText);
 
 // converting submitted message into email message
 const contactForm = document.getElementById("contact-form")

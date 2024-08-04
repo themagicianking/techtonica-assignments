@@ -1,23 +1,15 @@
 body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
+  flex-direction: column;
   background-image: linear-gradient(#B6FFFB, #17BEBB, #19454D);
   background-attachment: fixed;
-}
-
-.main-container {
-  display: grid;
-  grid-template: 12.5% 12.5% 25% 12.5% 12.5% 25% / 25% 25% 25% 25%;
-  column-gap: 5px;
-  width: 90%;
-  height: 90%;
-  margin-bottom: 50px;
+  align-items: center;
 }
 
 h1 {
   font-family: "Bungee Shade", sans-serif;
+  font-size: 40px;
+  font-weight: 800;
 }
 
 h2, h3 {
@@ -25,13 +17,52 @@ h2, h3 {
   color: #19454D;
 }
 
-h1 {
-  font-size: 40px;
-  font-weight: 800;
+a, ul, p, form, #send {
+  font-family: "M PLUS Code Latin", monospace;
 }
 
-h3 {
-  margin-top: 40px;
+p, li {
+  font-size: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.main-container {
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr / 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  grid-area: 1 / 2 / 2 / 16;
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #B6FFFB;
+  border-radius: 100%;
+}
+
+.skills {
+  grid-area: 2 / 3 / 4 / 6;
+  width: 450px;
+  height: 450px;
+}
+
+.projects {
+  grid-area: 2 / 7 / 6 / 12;
+  align-self: start;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .project-display {
@@ -44,37 +75,13 @@ h3 {
   -7px 10px 1px #FCDC5F;
 }
 
-a, ul, p, form, #send {
-  font-family: "M PLUS Code Latin", monospace;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-header {
-  grid-area: 1 / 1 / 2 / 4;
-}
-
-.bubble {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #B6FFFB;
-  border-radius: 100%;
-  margin: 20px;
-}
-
 .social-media {
-  grid-area: 1 / 4 / 2 / 5;
+  grid-area: 1 / 14 / 4 / 16;
   width: 300px;
   height: 300px;
 }
 
-.links {
+.linked-icons {
   display: flex;
   justify-content: center;
 }
@@ -87,33 +94,12 @@ header {
   margin: 10px;
 }
 
-.skills {
-  grid-area: 2 / 1 / 4 / 2;
-  justify-content: flex-start;
-  width: 400px;
-  height: 400px;
-}
-
-.projects {
-  grid-area: 2 / 2 / 4 / 4;
-  display: flex;
-  justify-content: flex-end;
-  text-align: right;
-  margin-left: 20%;
-  margin-right: 10%;
-}
-
 .contact {
-  grid-area: 5 / 1 / 5 / 3;
+  grid-area: 5 / 2 / 8 / 7;
   display: flex;
-  width: 350px;
-  height: 350px;
+  width: 500px;
+  height: 500px;
   text-align: center;
-  margin-left: 25%;
-}
-
-#contact-header {
-  margin-top: 40px;
 }
 
 #contact-form {
@@ -123,11 +109,16 @@ header {
   flex-grow: 1;
 }
 
+#contact-header {
+  margin-top: 40px;
+}
+
 #message {
   display: flex;
   flex-wrap: wrap;
   resize: none;
-  height: 30%;
+  height: 50%;
+  width: 110%;
   margin: 10px;
   border-radius: 5px;
   border: thick solid #17BEBB;
@@ -141,10 +132,10 @@ header {
   resize: none;
   border-radius: 5px;
   border: thick solid #17BEBB;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
-#namee:focus {
+#name:focus {
   outline: 1px solid #FCDC5F;
 }
 
@@ -157,45 +148,67 @@ header {
 }
 
 #about {
-  grid-area: 7 / 3 / 5 / 5;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-end;
+  grid-area: 5 / 7 / 8 / 16;
+  display: grid;
   text-align: right;
   color:#B6FFFB;
   text-shadow: 0px 1px 0px #FCDC5F,
   0px 2px 0px #F4857B;
 }
 
+#bio {
+  grid-area: 7 / 7 / 8 / 12;
+}
+
+
 #headshot {
-  width: 300px;
+  grid-area: 5 / 12 / 8 / 16;
+  width: 350px;
   border-radius: 100%;
   border: 4px solid #B6FFFB;
   background-color: #B6FFFB;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1300px) {
   .main-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 50px 0px;
   }
 
-  .projects {
-    margin: 0px;
+  .title {
+    text-align: center;
+  }
+
+  .social-media, .skills, .projects, .contact, #about {
+    margin: 30px 50px;
+  }
+
+  .contact {
+    margin-top: 50px;
   }
 
   #about {
+    display: flex;
     flex-direction: row-reverse;
     justify-content: flex-start;
+    align-items: center;
+  }
+
+  #bio {
+    margin: 0px 30px;
   }
 }
 
-@media screen and (max-width: 872px) {
-  header {
-    text-align: center;
+@media screen and (max-width: 900px) {
+  /* .main-container {
+    display: flex;
+    flex-direction: column;
   }
+  .title {
+    text-align: center;
+  } */
 
   .bubble {
     background-color: inherit;
@@ -204,14 +217,11 @@ header {
 
   .projects {
     text-align: center;
-  }
-
-  .contact {
-    margin: 0px;
+    /* margin-top: 30px; */
   }
 
   #contact-header {
-    margin: 0px;
+    /* margin: 0px; */
   }
 
   #message {
@@ -220,12 +230,13 @@ header {
   }
 
   #about {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     text-align: center;
+    margin-top: 30px;
   }
 
   #headshot {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 }
