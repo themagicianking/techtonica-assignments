@@ -29,6 +29,7 @@ class Shape {
 class Cell {
   empty = true;
   color = "none";
+  fixed = false;
 
   constructor(x, y) {
     this.x = x;
@@ -38,6 +39,11 @@ class Cell {
   // aboveCellLocation gives the coordinates of whichever cell would be above this one. the location may not exist (if there's negative coordinates)
   get aboveCellLocation() {
     return [this.x, this.y - 1];
+  }
+
+  // belowCellLocation gives the coordinates of whichever cell would be below this one. the location may not exist if the y index is over 19.
+  get belowCellLocation() {
+    return [this.x, this.y + 1];
   }
 }
 
@@ -94,18 +100,55 @@ class Grid {
 
   // looks at any given row of the grid and converts it to what it "should" be on the next tick; ie, it checks to see if there are any pieces above and drops them into itself. still need to get pieces to stay if the row is at the bottom of the grid.
   dropRow(rowNum) {
+    // refactoring this code by column one at a time instead of row.
+    // IF THE SPACE IS NOT FIXED:
+    // case one: the space is empty
+    // if there is an occupied space above, the space is now full
+    // if not, remain empty
+    // case two: the space is full
+    // if the space below is empty, the space is now empty
+    // if not, remain full and the space is now fixed
+    // let row = this.grid[rowNum];
+    // row.forEach((cell) => {
+
+    //   );
+    //   if (!cell.fixed) {
+    //     if (cell.empty && hasFullCellAbove) {
+    //       this.fillSpace(cell.x, cell.y, cell.color);
+    //       if (hasFullCellBelow) {
+    //         if (
+    //           this.grid[cell.belowCellLocation[1]][cell.belowCellLocation[0]]
+    //             .fixed ||
+    //           cell.y === 19
+    //         ) {
+    //           cell.fixed = true;
+    //         }
+    //       }
+    //     }
+    //     if (!cell.empty && !hasFullCellBelow) {
+    //       this.emptySpace(cell.x, cell.y);
+    //     }
+    //   }
+    // });
+    // refactoring AGAIN: CHECK TO SEE WHAT'S DROPPING DOWN, drop it, then pull down
     let row = this.grid[rowNum];
+
     row.forEach((cell) => {
-      if (
-        this.occupiedSpacesCoordinates.find(
-          (coordinates) =>
-            JSON.stringify(coordinates) ===
-            JSON.stringify(cell.aboveCellLocation)
-        )
-      ) {
-        this.fillSpace(cell.x, cell.y, cell.color);
-      } else {
-        this.emptySpace(cell.x, cell.y);
+      let hasFullCellBelow = this.occupiedSpacesCoordinates.find(
+        (coordinates) =>
+          JSON.stringify(coordinates) === JSON.stringify(cell.belowCellLocation)
+      );
+      let cellBelow;
+
+      hasFullCellBelow
+        ? (cellBelow =
+            this.grid[cell.belowCellLocation[1]][cell.belowCellLocation[0]])
+        : (cellBelow = false);
+
+      let hasLanded = cellBelow.fixed || rowNum === 19;
+      
+      if (!cell.empty && hasLanded) {
+        cell.fixed = true;
       }
     });
   }
@@ -137,3 +180,31 @@ function dropAllPieces(grid) {
     grid.dropRow(i);
   }
 }
+
+let testGrid = new Grid();
+printGrid(testGrid);
+let testSquare = new Shape();
+insertShape(testSquare, testGrid);
+printGrid(testGrid);
+dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+// dropAllPieces(testGrid);
+printGrid(testGrid);
