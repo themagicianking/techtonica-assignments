@@ -1,14 +1,3 @@
-// function createBackground() {
-//   const backgroundContainer = document.querySelector(".puzzle-container");
-//   for (let i = 0; i < 200; i++) {
-//     let box = document.createElement("div")
-//     box.classList.add("box");
-//     backgroundContainer.appendChild(box);
-//   }
-// }
-
-// createBackground();
-
 class Shape {
   type = "square";
   coordinates = [
@@ -35,16 +24,21 @@ class Shape {
 class Cell {
   empty = true;
   color = "none";
+
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 }
 
 class Grid {
   grid = new Array();
 
   constructor() {
-    for (let i = 0; i < 20; i++) {
+    for (let y = 0; y < 20; y++) {
       const row = new Array();
-      for (let i = 0; i < 10; i++) {
-        row.push(new Cell());
+      for (let x = 0; x < 10; x++) {
+        row.push(new Cell(x, y));
       }
       this.grid.push(row);
     }
@@ -78,7 +72,6 @@ class Grid {
 
   dropPieces() {
     this.occupiedSpaces.forEach((cell) => {
-      this.emptySpace(cell.x, cell.y);
       this.fillSpace(cell.x, cell.y + 1, cell.color);
     });
   }
@@ -106,7 +99,8 @@ let testGrid = new Grid();
 let testSquare = new Shape();
 
 printGrid(testGrid);
-
 insertShape(testSquare, testGrid);
-
 printGrid(testGrid);
+testGrid.dropPieces();
+printGrid(testGrid);
+console.log(testGrid.grid);
