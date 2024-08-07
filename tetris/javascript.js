@@ -18,16 +18,18 @@ class Shape {
     { x: 1, y: 1 },
   ];
 
+  shiftLeft() {
+    this.coordinates.map((item) => (item.x = item.x - 1));
+  }
+
   shiftRight() {
     this.coordinates.map((item) => (item.x = item.x + 1));
   }
-}
 
-let testShape = new Shape();
-testShape.shiftRight();
-testShape.shiftRight();
-testShape.shiftRight();
-console.log(testShape.coordinates);
+  dropDown() {
+    this.coordinates.map((item) => (item.y = item.y + 1));
+  }
+}
 
 class Cell {
   empty = true;
@@ -74,12 +76,15 @@ class Grid {
   }
 }
 
-// let testGrid = new Grid();
-// testGrid.fillSpace(5, 0, "red");
-// testGrid.fillSpace(3, 7, "yellow");
-// testGrid.fillSpace(2, 0, "black");
-// testGrid.fillSpace(9, 9, "blue");
+function insertShape(shape, grid) {
+  shape.coordinates.forEach((coordinate) => {
+    grid.fillSpace(coordinate.x, coordinate.y, "black");
+  });
+}
 
-// console.log(testGrid.grid);
-// testGrid.emptySpace(5, 0);
-// console.log(testGrid.occupiedSpaces);
+let testGrid = new Grid();
+let testSquare = new Shape();
+
+insertShape(testSquare, testGrid);
+
+console.log(testGrid.occupiedSpaces);
