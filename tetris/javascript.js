@@ -27,18 +27,38 @@ class Grid {
   }
 
   fillSpace(x, y, color) {
-    this.grid[x][y].empty = false;
-    this.grid[x][y].color = color;
+    this.grid[y][x].empty = false;
+    this.grid[y][x].color = color;
   }
 
   emptySpace(x, y) {
-    this.grid[x][y].empty = true;
-    this.grid[x][y].color = "none";
+    this.grid[y][x].empty = true;
+    this.grid[y][x].color = "none";
+  }
+
+  get occupiedSpaces() {
+    const coordinates = new Array();
+
+    this.grid.forEach((row, yIndex) => {
+      let xIndices = [];
+      row.forEach((cell, index) => {
+        if (cell.empty === false) {
+          xIndices.push(index);
+        }
+      });
+      xIndices.forEach((index) => coordinates.push({ x: index, y : yIndex}));
+    });
+
+    return coordinates;
   }
 }
 
 let testGrid = new Grid();
 testGrid.fillSpace(5, 0, "red");
+testGrid.fillSpace(3, 7, "yellow");
+testGrid.fillSpace(2, 0, "black");
+testGrid.fillSpace(9, 9, "blue");
+
 console.log(testGrid.grid);
-testGrid.emptySpace(5, 0);
-console.log(testGrid.grid);
+// testGrid.emptySpace(5, 0);
+console.log(testGrid.occupiedSpaces);
