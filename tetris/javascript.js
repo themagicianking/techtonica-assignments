@@ -30,13 +30,14 @@ class Cell {
     this.y = y;
   }
 
-  aboveCellLocation() {
+  get aboveCellLocation() {
     return [this.x, this.y - 1];
   }
 }
 
 class Grid {
   grid = new Array();
+
   get occupiedSpaces() {
     const spaces = new Array();
 
@@ -52,9 +53,11 @@ class Grid {
 
     return spaces;
   }
+
   get occupiedSpacesCoordinates() {
     let coordinateArr = [];
     this.occupiedSpaces.forEach((cell) => coordinateArr.push([cell.x, cell.y]));
+    return coordinateArr;
   }
 
   constructor() {
@@ -80,7 +83,17 @@ class Grid {
   dropRow(rowNum) {
     let row = this.grid[rowNum];
     row.forEach((cell) => {
-      let me = "hi";
+      if (
+        this.occupiedSpacesCoordinates.find(
+          (coordinates) =>
+            JSON.stringify(coordinates) ===
+            JSON.stringify(cell.aboveCellLocation)
+        )
+      ) {
+        this.fillSpace(cell.x, cell.y, cell.color);
+      } else {
+        this.emptySpace(cell.x, cell.y);
+      }
     });
   }
 }
@@ -103,11 +116,20 @@ function printGrid(grid) {
   console.log("____________");
 }
 
+function dropAllPieces(grid) {
+  for (let i = grid.grid.length - 1; i >= 0; i--) {
+    grid.dropRow(i);
+  }
+}
+
 let testGrid = new Grid();
 let testSquare = new Shape();
 
 printGrid(testGrid);
 insertShape(testSquare, testGrid);
 printGrid(testGrid);
-testGrid.dropRow(2);
-console.log(testGrid.occupiedSpaces);
+dropAllPieces(testGrid);
+dropAllPieces(testGrid);
+dropAllPieces(testGrid);
+dropAllPieces(testGrid);
+printGrid(testGrid);
