@@ -8,6 +8,27 @@
 // }
 
 // createBackground();
+
+class Shape {
+  type = "square";
+  coordinates = [
+    { x: 0, y: 0 },
+    { x: 0, y: 1 },
+    { x: 1, y: 0 },
+    { x: 1, y: 1 },
+  ];
+
+  shiftRight() {
+    this.coordinates.map((item) => (item.x = item.x + 1));
+  }
+}
+
+let testShape = new Shape();
+testShape.shiftRight();
+testShape.shiftRight();
+testShape.shiftRight();
+console.log(testShape.coordinates);
+
 class Cell {
   empty = true;
   color = "none";
@@ -46,19 +67,19 @@ class Grid {
           xIndices.push(index);
         }
       });
-      xIndices.forEach((index) => coordinates.push({ x: index, y : yIndex}));
+      xIndices.forEach((index) => coordinates.push({ x: index, y: yIndex }));
     });
 
     return coordinates;
   }
 }
 
-let testGrid = new Grid();
-testGrid.fillSpace(5, 0, "red");
-testGrid.fillSpace(3, 7, "yellow");
-testGrid.fillSpace(2, 0, "black");
-testGrid.fillSpace(9, 9, "blue");
+// let testGrid = new Grid();
+// testGrid.fillSpace(5, 0, "red");
+// testGrid.fillSpace(3, 7, "yellow");
+// testGrid.fillSpace(2, 0, "black");
+// testGrid.fillSpace(9, 9, "blue");
 
-console.log(testGrid.grid);
+// console.log(testGrid.grid);
 // testGrid.emptySpace(5, 0);
-console.log(testGrid.occupiedSpaces);
+// console.log(testGrid.occupiedSpaces);
