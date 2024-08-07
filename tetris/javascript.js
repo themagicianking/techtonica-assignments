@@ -17,6 +17,7 @@ class Shape {
     { x: 1, y: 0 },
     { x: 1, y: 1 },
   ];
+  color = "blue";
 
   shiftLeft() {
     this.coordinates.map((item) => (item.x = item.x - 1));
@@ -74,17 +75,38 @@ class Grid {
 
     return coordinates;
   }
+
+  dropPieces() {
+    this.occupiedSpaces.forEach((cell) => {
+      this.emptySpace(cell.x, cell.y);
+      this.fillSpace(cell.x, cell.y + 1, cell.color);
+    });
+  }
 }
 
 function insertShape(shape, grid) {
   shape.coordinates.forEach((coordinate) => {
-    grid.fillSpace(coordinate.x, coordinate.y, "black");
+    grid.fillSpace(coordinate.x, coordinate.y, shape.color);
   });
+}
+
+function printGrid(grid) {
+  console.log("____________");
+  grid.grid.forEach((row) => {
+    let rowArr = ["|"];
+    row.forEach((cell) =>
+      cell.empty === true ? rowArr.push(" ") : rowArr.push("X")
+    );
+    console.log(rowArr.join("") + "|");
+  });
+  console.log("____________");
 }
 
 let testGrid = new Grid();
 let testSquare = new Shape();
 
+printGrid(testGrid);
+
 insertShape(testSquare, testGrid);
 
-console.log(testGrid.occupiedSpaces);
+printGrid(testGrid);
