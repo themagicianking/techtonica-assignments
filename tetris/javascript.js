@@ -29,10 +29,33 @@ class Cell {
     this.x = x;
     this.y = y;
   }
+
+  aboveCellLocation() {
+    return [this.x, this.y - 1];
+  }
 }
 
 class Grid {
   grid = new Array();
+  get occupiedSpaces() {
+    const spaces = new Array();
+
+    this.grid.forEach((row, yIndex) => {
+      let xIndices = [];
+      row.forEach((cell, index) => {
+        if (!cell.empty) {
+          xIndices.push(index);
+        }
+      });
+      xIndices.forEach((index) => spaces.push(new Cell(index, yIndex)));
+    });
+
+    return spaces;
+  }
+  get occupiedSpacesCoordinates() {
+    let coordinateArr = [];
+    this.occupiedSpaces.forEach((cell) => coordinateArr.push([cell.x, cell.y]));
+  }
 
   constructor() {
     for (let y = 0; y < 20; y++) {
@@ -54,25 +77,10 @@ class Grid {
     this.grid[y][x].color = "none";
   }
 
-  get occupiedSpaces() {
-    const coordinates = new Array();
-
-    this.grid.forEach((row, yIndex) => {
-      let xIndices = [];
-      row.forEach((cell, index) => {
-        if (cell.empty === false) {
-          xIndices.push(index);
-        }
-      });
-      xIndices.forEach((index) => coordinates.push({ x: index, y: yIndex }));
-    });
-
-    return coordinates;
-  }
-
-  dropPieces() {
-    this.occupiedSpaces.forEach((cell) => {
-      this.fillSpace(cell.x, cell.y + 1, cell.color);
+  dropRow(rowNum) {
+    let row = this.grid[rowNum];
+    row.forEach((cell) => {
+      let me = "hi";
     });
   }
 }
@@ -101,6 +109,5 @@ let testSquare = new Shape();
 printGrid(testGrid);
 insertShape(testSquare, testGrid);
 printGrid(testGrid);
-testGrid.dropPieces();
-printGrid(testGrid);
-console.log(testGrid.grid);
+testGrid.dropRow(2);
+console.log(testGrid.occupiedSpaces);
