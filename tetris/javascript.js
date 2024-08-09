@@ -132,7 +132,6 @@ class Grid {
         let cell = this.grid[rowNum][cellAbove.x];
         if (cell.empty) {
           this.fillSpace(cell.x, cell.y, cellAbove.color);
-          console.log(cell.color);
           this.emptySpace(cellAbove.x, cellAbove.y);
         } else {
         }
@@ -168,10 +167,6 @@ function dropAllPieces(grid) {
   }
 }
 
-let testGrid = new Grid();
-let testSquare = new Shape("square");
-insertShape(testSquare, testGrid);
-
 // visualizing grid on the page
 function createCSSGrid() {
   const gridElement = document.getElementById("puzzle-container");
@@ -185,18 +180,14 @@ function createCSSGrid() {
   }
 }
 
-createCSSGrid();
-
 // updating the css
 function updateCSSGrid(gridState) {
   gridState.forEach((row) => {
     row.forEach((cell) => {
-      // console.log(cell.x, cell.y);
       let cssCell = document.getElementById(`${cell.x}, ${cell.y}`);
       if (cell.empty) {
         cssCell.style.backgroundColor = "inherit";
       } else {
-        console.log("the cell is full");
         cssCell.style.backgroundColor = `${cell.color}`;
       }
     });
@@ -204,8 +195,26 @@ function updateCSSGrid(gridState) {
 }
 
 function performTick() {
+  let gridBefore = JSON.stringify(testGrid.grid);
   dropAllPieces(testGrid);
+  let gridAfter = JSON.stringify(testGrid.grid);
+  if (gridBefore === gridAfter) {
+    let shape = new Shape(getRandomShapeType());
+    insertShape(shape, testGrid);
+  }
   updateCSSGrid(testGrid.grid);
 }
 
-window.setInterval(performTick, 500);
+function getRandomShapeType() {
+  let shapes = ["square", "rectangle"];
+  let num = Math.floor(Math.random() * shapes.length + 1);
+  return shapes[num - 1];
+}
+
+let testGrid = new Grid();
+let testSquare = new Shape("square");
+
+createCSSGrid();
+
+
+// window.setInterval(performTick, 500);
