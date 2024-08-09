@@ -1,14 +1,28 @@
 // creates an object with properties for shape type and a list of coordinates that it occupies as well as a color
 class Shape {
-  // for simplicity's sake, the only shape i'm currently making is a square
-  type = "square";
-  coordinates = [
-    { x: 0, y: 0 },
-    { x: 0, y: 1 },
-    { x: 1, y: 0 },
-    { x: 1, y: 1 },
-  ];
-  color = "blue";
+  // for simplicity's sake, the only shapes i'm currently making are squares and rectangles
+
+  constructor(typeOfShape) {
+    if (typeOfShape == "square") {
+      this.coordinates = [
+        { x: 0, y: 0 },
+        { x: 0, y: 1 },
+        { x: 1, y: 0 },
+        { x: 1, y: 1 },
+      ];
+      this.color = "cyan";
+    } else if (typeOfShape == "rectangle") {
+      this.coordinates = [
+        { x: 0, y: 0 },
+        { x: 1, y: 0 },
+        { x: 2, y: 0 },
+        { x: 3, y: 0 },
+      ];
+      this.color = "purple";
+    } else {
+      return;
+    }
+  }
 
   updateLocation() {
     // tells the shape where it is
@@ -155,38 +169,8 @@ function dropAllPieces(grid) {
 }
 
 let testGrid = new Grid();
-// printGrid(testGrid);
-let testSquare = new Shape();
+let testSquare = new Shape("square");
 insertShape(testSquare, testGrid);
-console.log(testGrid.occupiedSpaces);
-// printGrid(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-dropAllPieces(testGrid);
-// dropAllPieces(testGrid);
-// printGrid(testGrid);
 
 // visualizing grid on the page
 function createCSSGrid() {
