@@ -217,4 +217,4 @@ let testSquare = new Shape("square");
 createCSSGrid();
 
 
-// window.setInterval(performTick, 500);
+window.setInterval(performTick, 500);
