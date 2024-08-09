@@ -199,6 +199,12 @@ function performTick() {
   dropAllPieces(testGrid);
   let gridAfter = JSON.stringify(testGrid.grid);
   if (gridBefore === gridAfter) {
+    // stop inserting and end game if there are any filled cells in the top row
+    let hasShapesInTopRow =
+      testGrid.grid[0].filter((cell) => !cell.empty).length > 0;
+    if (hasShapesInTopRow) {
+      alert("Game Over!");
+    }
     let shape = new Shape(getRandomShapeType());
     insertShape(shape, testGrid);
   }
@@ -215,6 +221,5 @@ let testGrid = new Grid();
 let testSquare = new Shape("square");
 
 createCSSGrid();
-
 
 window.setInterval(performTick, 500);
