@@ -17,15 +17,19 @@ h1 {
   color: cyan;
 }
 
-.puzzle-container {
+#puzzle-container {
   display: grid;
-  grid-template: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% / 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  align-items: center;
   height: 80%;
   width: 80%;
   border: thick solid cyan;
   border-radius: 5px;
 }
 
-.box {
+.cell {
+  height: 100%;
+  width: 100%;
   border: thin solid white;
 }
