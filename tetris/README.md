@@ -37,3 +37,12 @@ Features:
 - User is able to increase the speed of the piece falling by using the down arrow
 - Score is calculated based on how many rows are cleared
 - User is able to enter and save their high score
+
+## Additional Requirements: React
+
+- Write a game of your choosing in React
+- Make sure you practice components, props, and state
+- Have some sort of input that you receive from one component that you pass to another (such as number of tries, hi/low number, etc.)
+- Have some sort of counter that uses the useState hook to update the score or count to the screen
+- Commit your code at least 15 times
+- Submit at least 1 PR by the end of the week

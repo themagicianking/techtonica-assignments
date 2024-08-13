@@ -1,3 +1,5 @@
+// NOTE ON GAMEPLAY: in tetris, everything lands where it lands. it drops down ONE if the row beneath it is cleared, it does not fall into the empty space.
+
 // creates an object with properties for shape type and a list of coordinates that it occupies as well as a color
 class Shape {
   hasLanded = false;
@@ -113,12 +115,12 @@ class Grid {
     return spaces;
   }
 
-  // this getter returns an array of the positions of each occupied cell in the form of an array in which arr[0] is the x coordinate and arr[1] is the y coordinate
-  get occupiedSpacesCoordinates() {
-    let coordinateArr = [];
-    this.occupiedSpaces.forEach((cell) => coordinateArr.push([cell.x, cell.y]));
-    return coordinateArr;
-  }
+  // this getter returns an array of the positions of each occupied cell in the form of an array in which arr[0] is the x coordinate and arr[1] is the y coordinate. not sure this is necessary.
+  // get occupiedSpacesCoordinates() {
+  //   let coordinateArr = [];
+  //   this.occupiedSpaces.forEach((cell) => coordinateArr.push([cell.x, cell.y]));
+  //   return coordinateArr;
+  // }
 
   get occupiedNonShapeSpaces() {
     let shapeCells = [];
@@ -193,6 +195,10 @@ class Grid {
     });
     this.activeShape = shape;
     this.activeShapeLocation = JSON.parse(JSON.stringify(shape.coordinates));
+  }
+
+  dropActiveShape(shape) {
+    
   }
 
   updateActiveShapeLocation() {
