@@ -27,13 +27,19 @@ class Shape {
   // the shift methods are for translating the coordinates of the shape from left to right; i want to use this to translate player input
   // todo: change item to coordinate
   shiftLeft() {
-    if (!this.coordinates.some((coordinate) => coordinate.x < 0)) {
+    if (!this.coordinates.some((coordinate) => coordinate.x < 1)) {
       this.coordinates.map((item) => (item.x = item.x - 1));
+    } else {
+      return;
     }
   }
 
   shiftRight() {
-    this.coordinates.map((item) => (item.x = item.x + 1));
+    if (!this.coordinates.some((coordinate) => coordinate.x > 8)) {
+      this.coordinates.map((item) => (item.x = item.x + 1));
+    } else {
+      return;
+    }
   }
 
   // the drop down method is for translating the coordinates down; i'm unsure if this method is redundant because of the row drop method in the grid class but i think it may be useful for if i implement the ability to make a shape move down faster
@@ -165,7 +171,6 @@ class Grid {
   }
 
   updateActiveShapeLocation() {
-    console.log(this.activeShapeLocation);
     this.activeShapeLocation.forEach((coordinate) => {
       let cell = this.grid[coordinate.y][coordinate.x];
       cell.clear();
