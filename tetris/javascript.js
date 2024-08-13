@@ -2,31 +2,27 @@
 class Shape {
   // for simplicity's sake, the only shapes i'm currently making are squares and rectangles
 
-  constructor(typeOfShape) {
-    // refactor into switch statement with numbered cases instead of strings
-    if (typeOfShape == "square") {
-      this.coordinates = [
-        { x: 0, y: 0 },
-        { x: 0, y: 1 },
-        { x: 1, y: 0 },
-        { x: 1, y: 1 },
-      ];
-      this.color = "cyan";
-    } else if (typeOfShape == "rectangle") {
-      this.coordinates = [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-        { x: 2, y: 0 },
-        { x: 3, y: 0 },
-      ];
-      this.color = "purple";
-    } else {
-      return;
+  constructor(randomNum) {
+    switch (randomNum) {
+      case 0:
+        this.coordinates = [
+          { x: 0, y: 0 },
+          { x: 0, y: 1 },
+          { x: 1, y: 0 },
+          { x: 1, y: 1 },
+        ];
+        this.color = "cyan";
+        break;
+      case 1:
+        this.coordinates = [
+          { x: 0, y: 0 },
+          { x: 1, y: 0 },
+          { x: 2, y: 0 },
+          { x: 3, y: 0 },
+        ];
+        this.color = "purple";
+        break;
     }
-  }
-
-  updateLocation() {
-    // tells the shape where it is
   }
 
   // the shift methods are for translating the coordinates of the shape from left to right; i want to use this to translate player input
@@ -69,16 +65,6 @@ class Cell {
     this.shape = null;
     this.color = null;
   }
-
-  // aboveCellLocation gives the coordinates of whichever cell would be above this one. the location may not exist (if there's negative coordinates)
-  get aboveCellLocation() {
-    return [this.x, this.y - 1];
-  }
-
-  // belowCellLocation gives the coordinates of whichever cell would be below this one. the location may not exist if the y index is over 19.
-  get belowCellLocation() {
-    return [this.x, this.y + 1];
-  }
 }
 
 // the grid class creates and handles a 10 x 20 grid of cells
@@ -120,31 +106,60 @@ class Grid {
     }
   }
 
-  // looks at any given row of the grid and converts it to what it "should" be on the next tick; ie, it checks to see if there are any pieces above and drops them into itself. still need to get pieces to stay if the row is at the bottom of the grid.
-  pullPiecesIntoRow(rowNum) {
-    // check to see what spaces are dropping down and drop them.
-    let rowAbove = this.grid[rowNum - 1];
-    rowAbove.forEach((cellAbove) => {
-      if (cellAbove.empty) {
-        return;
-      } else {
-        let cell = this.grid[rowNum][cellAbove.x];
-        if (cell.empty) {
-          cell.fill(cellAbove.shape);
-          cellAbove.clear();
-        } else {
-        }
-      }
+  // adds the grid to the css
+  createCSSGrid() {
+    const gridElement = document.getElementById("puzzle-container");
+    this.grid.forEach((row) => {
+      row.forEach((cell) => {
+        let cssCell = document.createElement("div");
+        cssCell.id = `${cell.x}, ${cell.y}`;
+        cssCell.classList.add("cell");
+        gridElement.appendChild(cssCell);
+      });
     });
   }
 
-  // insertShape generates a shape and then creates filled spaces starting from (0,0) in the 10 x 20 grid that correspond to that shape
-insertShape(shape) {
-  shape.coordinates.forEach((coordinate) => {
-    let cell = this.grid[coordinate.y][coordinate.x];
-    cell.fill(shape);
-  });
-}
+  // updating the css grid
+  updateCSSGrid() {
+    this.grid.forEach((row) => {
+      row.forEach((cell) => {
+        let cssCell = document.getElementById(`${cell.x}, ${cell.y}`);
+        if (cell.empty) {
+          cssCell.style.backgroundColor = "inherit";
+        } else {
+          cssCell.style.backgroundColor = `${cell.color}`;
+        }
+      });
+    });
+  }
+
+  // // looks at any given row of the grid and converts it to what it "should" be on the next tick; ie, it checks to see if there are any pieces above and drops them into itself. still need to get pieces to stay if the row is at the bottom of the grid.
+  // pullPiecesIntoRow(rowNum) {
+  //   // check to see what spaces are dropping down and drop them.
+  //   let rowAbove = this.grid[rowNum - 1];
+  //   rowAbove.forEach((cellAbove) => {
+  //     if (cellAbove.empty) {
+  //       return;
+  //     } else {
+  //       let cell = this.grid[rowNum][cellAbove.x];
+  //       if (cell.empty) {
+  //         cell.fill(cellAbove.shape);
+  //         cellAbove.clear();
+  //       } else {
+  //       }
+  //     }
+  //   });
+  // }
+
+  // insertActiveShape generates a shape and then creates filled spaces starting from (0,0) in the 10 x 20 grid that correspond to that shape
+  insertActiveShape(shape) {
+    shape.coordinates.forEach((coordinate) => {
+      let cell = this.grid[coordinate.y][coordinate.x];
+      cell.fill(shape);
+    });
+  }
+
+  updateShapeLocation(shape) {}
 }
 
 // print grid is just a helper so i can visualize and debug, currently space strings represent empty cells and X strings represent one filled cell
@@ -160,66 +175,41 @@ function printGrid(grid) {
   console.log("____________");
 }
 
-// dropAllPieces drops every row in the grid once
-function dropAllPieces(grid) {
-  for (let i = grid.grid.length - 1; i >= 1; i--) {
-    grid.pullPiecesIntoRow(i);
-  }
-}
+// // dropAllPieces drops every row in the grid once
+// function dropAllPieces(grid) {
+//   for (let i = grid.grid.length - 1; i >= 1; i--) {
+//     grid.pullPiecesIntoRow(i);
+//   }
+// }
 
-// visualizing grid on the page
-function createCSSGrid() {
-  const gridElement = document.getElementById("puzzle-container");
-  for (let y = 0; y < 20; y++) {
-    for (let x = 0; x < 10; x++) {
-      let cell = document.createElement("div");
-      cell.id = `${x}, ${y}`;
-      cell.classList.add("cell");
-      gridElement.appendChild(cell);
-    }
-  }
-}
-
-// updating the css
-function updateCSSGrid(gridState) {
-  gridState.forEach((row) => {
-    row.forEach((cell) => {
-      let cssCell = document.getElementById(`${cell.x}, ${cell.y}`);
-      if (cell.empty) {
-        cssCell.style.backgroundColor = "inherit";
-      } else {
-        cssCell.style.backgroundColor = `${cell.color}`;
-      }
-    });
-  });
-}
-
+// completely refactor perform tick, todo: add performTick to grid class
 function performTick() {
-  let gridBefore = JSON.stringify(testGrid.grid);
-  dropAllPieces(testGrid);
-  let gridAfter = JSON.stringify(testGrid.grid);
-  if (gridBefore === gridAfter) {
-    // stop inserting and end game if there are any filled cells in the top row
-    let hasShapesInTopRow =
-      testGrid.grid[0].filter((cell) => !cell.empty).length > 0;
-    if (hasShapesInTopRow) {
-      alert("Game Over!");
-    }
-    let shape = new Shape(getRandomShapeType());
-    testGrid.insertShape(shape);
-  }
-  updateCSSGrid(testGrid.grid);
+  // let gridBefore = JSON.stringify(testGrid.grid);
+  // dropAllPieces(testGrid);
+  // let gridAfter = JSON.stringify(testGrid.grid);
+  // if (gridBefore === gridAfter) {
+  // stop inserting and end game if there are any filled cells in the top row
+  //   let hasShapesInTopRow =
+  //     testGrid.grid[0].filter((cell) => !cell.empty).length > 0;
+  //   if (hasShapesInTopRow) {
+  //     alert("Game Over!");
+  //   }
+  //   let shape = new Shape(getRandomShapeType());
+  //   testGrid.insertActiveShape(shape);
+  // }
+  // updateCSSGrid(testGrid.grid);
 }
 
 function getRandomShapeType() {
-  let shapes = ["square", "rectangle"];
-  let num = Math.floor(Math.random() * shapes.length + 1);
-  return shapes[num - 1];
+  let shapeCases = [0, 1];
+  let num = Math.floor(Math.random() * shapeCases.length + 1);
+  return shapeCases[num - 1];
 }
 
 let testGrid = new Grid();
-let testSquare = new Shape("square");
 
-createCSSGrid();
+testGrid.createCSSGrid();
+testGrid.insertActiveShape(new Shape(getRandomShapeType()));
+testGrid.updateCSSGrid();
 
-window.setInterval(performTick, 500);
+// window.setInterval(performTick, 500);
