@@ -26,8 +26,12 @@ class Shape {
   }
 
   // the shift methods are for translating the coordinates of the shape from left to right
+  // todo: put long coordinates into variables
   shiftLeft() {
-    if (!this.coordinates.some((coordinate) => coordinate.x < 1)) {
+    let hasHitLeftSide = this.coordinates.some(
+      (coordinate) => coordinate.x === 0
+    );
+    if (!hasHitLeftSide) {
       this.coordinates.map((coordinate) => (coordinate.x = coordinate.x - 1));
     } else {
       return;
@@ -35,7 +39,10 @@ class Shape {
   }
 
   shiftRight() {
-    if (!this.coordinates.some((coordinate) => coordinate.x > 8)) {
+    let hasHitRightSide = this.coordinates.some(
+      (coordinate) => coordinate.x === 9
+    );
+    if (!hasHitRightSide) {
       this.coordinates.map((coordinate) => (coordinate.x = coordinate.x + 1));
     } else {
       return;
@@ -44,10 +51,15 @@ class Shape {
 
   // the drop down method is for translating the coordinates down
   dropDown() {
-    if (!this.coordinates.some((coordinate) => coordinate.y > 18)) {
-      this.coordinates.map((coordinate) => (coordinate.y = coordinate.y + 1));
-    } else {
+    let hasHitBottom = this.coordinates.some(
+      (coordinate) => coordinate.y === 19
+    );
+    if (!hasHitBottom && !this.hasLanded) {
+      // move it down
+    } else if (hasHitBottom) {
       this.hasLanded = true;
+    } else {
+      return;
     }
   }
 }
@@ -106,6 +118,15 @@ class Grid {
     let coordinateArr = [];
     this.occupiedSpaces.forEach((cell) => coordinateArr.push([cell.x, cell.y]));
     return coordinateArr;
+  }
+
+  get occupiedNonShapeSpaces() {
+    let shapeCells = [];
+    this.activeShape.coordinates.forEach((coordinate) => {
+      let cell = this.grid[coordinate.y][coordinate.x];
+      shapeCells.push(cell);
+    });
+    return this.occupiedSpaces.filter((space) => !shapeCells.includes(space));
   }
 
   // builds a 2d array; a 10 x 20 grid of cells
@@ -240,13 +261,17 @@ function updateGrid() {
   if (testGrid.activeShape.hasLanded) {
     testGrid.insertActiveShape(new Shape(getRandomShapeType()));
   } else {
+    // test to see if theres a shape below and if there is the shape has landed
+    testGrid.activeShape.coordinates.map((coordinate) => {
+      coordinate.y = coordinate.y + 1;
+    });
     testGrid.activeShape.dropDown();
     testGrid.updateActiveShapeLocation();
     testGrid.updateCSSGrid();
   }
 }
 
-window.setInterval(updateGrid, 500);
+// window.setInterval(updateGrid, 500);
 
 window.addEventListener("keydown", function (moveActiveShape) {
   switch (moveActiveShape.keyCode) {
@@ -267,3 +292,5 @@ window.addEventListener("keydown", function (moveActiveShape) {
       break;
   }
 });
+
+console.log(testGrid.occupiedNonShapeSpaces);
