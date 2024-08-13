@@ -44,7 +44,11 @@ class Shape {
 
   // the drop down method is for translating the coordinates down; i'm unsure if this method is redundant because of the row drop method in the grid class but i think it may be useful for if i implement the ability to make a shape move down faster
   dropDown() {
-    this.coordinates.map((item) => (item.y = item.y + 1));
+    if (!this.coordinates.some((coordinate) => coordinate.y > 18)) {
+      this.coordinates.map((item) => (item.y = item.y + 1));
+    } else {
+      return;
+    }
   }
 }
 
@@ -243,6 +247,11 @@ window.addEventListener("keydown", function (moveActiveShape) {
       break;
     case 39:
       testGrid.activeShape.shiftRight();
+      testGrid.updateActiveShapeLocation();
+      testGrid.updateCSSGrid();
+      break;
+    case 40:
+      testGrid.activeShape.dropDown();
       testGrid.updateActiveShapeLocation();
       testGrid.updateCSSGrid();
       break;
