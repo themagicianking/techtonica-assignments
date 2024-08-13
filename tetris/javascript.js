@@ -1,5 +1,6 @@
 // creates an object with properties for shape type and a list of coordinates that it occupies as well as a color
 class Shape {
+  hasLanded = false;
   // for simplicity's sake, the only shapes i'm currently making are squares and rectangles
   constructor(randomNum) {
     switch (randomNum) {
@@ -24,11 +25,10 @@ class Shape {
     }
   }
 
-  // the shift methods are for translating the coordinates of the shape from left to right; i want to use this to translate player input
-  // todo: change item to coordinate
+  // the shift methods are for translating the coordinates of the shape from left to right
   shiftLeft() {
     if (!this.coordinates.some((coordinate) => coordinate.x < 1)) {
-      this.coordinates.map((item) => (item.x = item.x - 1));
+      this.coordinates.map((coordinate) => (coordinate.x = coordinate.x - 1));
     } else {
       return;
     }
@@ -36,18 +36,18 @@ class Shape {
 
   shiftRight() {
     if (!this.coordinates.some((coordinate) => coordinate.x > 8)) {
-      this.coordinates.map((item) => (item.x = item.x + 1));
+      this.coordinates.map((coordinate) => (coordinate.x = coordinate.x + 1));
     } else {
       return;
     }
   }
 
-  // the drop down method is for translating the coordinates down; i'm unsure if this method is redundant because of the row drop method in the grid class but i think it may be useful for if i implement the ability to make a shape move down faster
+  // the drop down method is for translating the coordinates down
   dropDown() {
     if (!this.coordinates.some((coordinate) => coordinate.y > 18)) {
-      this.coordinates.map((item) => (item.y = item.y + 1));
+      this.coordinates.map((coordinate) => (coordinate.y = coordinate.y + 1));
     } else {
-      return;
+      this.hasLanded = true;
     }
   }
 }
@@ -236,7 +236,17 @@ testGrid.createCSSGrid();
 testGrid.insertActiveShape(new Shape(getRandomShapeType()));
 testGrid.updateCSSGrid();
 
-// window.setInterval(performTick, 500);
+function updateGrid() {
+  if (testGrid.activeShape.hasLanded) {
+    testGrid.insertActiveShape(new Shape(getRandomShapeType()));
+  } else {
+    testGrid.activeShape.dropDown();
+    testGrid.updateActiveShapeLocation();
+    testGrid.updateCSSGrid();
+  }
+}
+
+window.setInterval(updateGrid, 500);
 
 window.addEventListener("keydown", function (moveActiveShape) {
   switch (moveActiveShape.keyCode) {
