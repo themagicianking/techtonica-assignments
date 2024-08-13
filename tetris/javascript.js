@@ -1,7 +1,6 @@
 // creates an object with properties for shape type and a list of coordinates that it occupies as well as a color
 class Shape {
   // for simplicity's sake, the only shapes i'm currently making are squares and rectangles
-
   constructor(randomNum) {
     switch (randomNum) {
       case 0:
@@ -26,8 +25,11 @@ class Shape {
   }
 
   // the shift methods are for translating the coordinates of the shape from left to right; i want to use this to translate player input
+  // todo: change item to coordinate
   shiftLeft() {
-    this.coordinates.map((item) => (item.x = item.x - 1));
+    if (!this.coordinates.some((coordinate) => coordinate.x < 0)) {
+      this.coordinates.map((item) => (item.x = item.x - 1));
+    }
   }
 
   shiftRight() {
@@ -70,6 +72,7 @@ class Cell {
 // the grid class creates and handles a 10 x 20 grid of cells
 class Grid {
   grid = new Array();
+  activeShape = null;
 
   // this getter returns an array of cells identical to the cells that are currently not empty in the grid
   get occupiedSpaces() {
@@ -157,9 +160,21 @@ class Grid {
       let cell = this.grid[coordinate.y][coordinate.x];
       cell.fill(shape);
     });
+    this.activeShape = shape;
+    this.activeShapeLocation = JSON.parse(JSON.stringify(shape.coordinates));
   }
 
-  updateShapeLocation(shape) {}
+  updateActiveShapeLocation() {
+    console.log(this.activeShapeLocation);
+    this.activeShapeLocation.forEach((coordinate) => {
+      let cell = this.grid[coordinate.y][coordinate.x];
+      cell.clear();
+    });
+    this.insertActiveShape(this.activeShape);
+    this.activeShapeLocation = JSON.parse(
+      JSON.stringify(this.activeShape.coordinates)
+    );
+  }
 }
 
 // print grid is just a helper so i can visualize and debug, currently space strings represent empty cells and X strings represent one filled cell
@@ -213,3 +228,18 @@ testGrid.insertActiveShape(new Shape(getRandomShapeType()));
 testGrid.updateCSSGrid();
 
 // window.setInterval(performTick, 500);
+
+window.addEventListener("keydown", function (moveActiveShape) {
+  switch (moveActiveShape.keyCode) {
+    case 37:
+      testGrid.activeShape.shiftLeft();
+      testGrid.updateActiveShapeLocation();
+      testGrid.updateCSSGrid();
+      break;
+    case 39:
+      testGrid.activeShape.shiftRight();
+      testGrid.updateActiveShapeLocation();
+      testGrid.updateCSSGrid();
+      break;
+  }
+});
