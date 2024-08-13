@@ -3,6 +3,7 @@ class Shape {
   // for simplicity's sake, the only shapes i'm currently making are squares and rectangles
 
   constructor(typeOfShape) {
+    // refactor into switch statement with numbered cases instead of strings
     if (typeOfShape == "square") {
       this.coordinates = [
         { x: 0, y: 0 },
@@ -46,12 +47,27 @@ class Shape {
 // the cell class creates one cell for the grid with properties for whether it is empty or not, the color (this will always be none if it is empty), and the x and y coordinates
 class Cell {
   empty = true;
-  color = "none";
+  shape = null;
+  color = null;
   // fixed = false;
 
   constructor(x, y) {
     this.x = x;
     this.y = y;
+  }
+
+  // converts a cell from empty to full and sets a color
+  fill(shape) {
+    this.empty = false;
+    this.shape = shape;
+    this.color = shape.color;
+  }
+
+  // converts a cell from full to empty
+  clear() {
+    this.empty = true;
+    this.shape = null;
+    this.color = null;
   }
 
   // aboveCellLocation gives the coordinates of whichever cell would be above this one. the location may not exist (if there's negative coordinates)
@@ -104,23 +120,6 @@ class Grid {
     }
   }
 
-  // converts a cell from empty to full and sets a color
-  fillSpace(x, y, color) {
-    this.grid[y][x].empty = false;
-    this.grid[y][x].color = color;
-  }
-
-  // converts a cell from full to empty
-  emptySpace(x, y) {
-    this.grid[y][x].empty = true;
-    this.grid[y][x].color = "none";
-  }
-
-  // drops a cell down into an empty space below it
-  dropCellIntoEmpty(x, y, color) {
-    this.fillSpace(x, y + 1, color);
-  }
-
   // looks at any given row of the grid and converts it to what it "should" be on the next tick; ie, it checks to see if there are any pieces above and drops them into itself. still need to get pieces to stay if the row is at the bottom of the grid.
   pullPiecesIntoRow(rowNum) {
     // check to see what spaces are dropping down and drop them.
@@ -131,20 +130,21 @@ class Grid {
       } else {
         let cell = this.grid[rowNum][cellAbove.x];
         if (cell.empty) {
-          this.fillSpace(cell.x, cell.y, cellAbove.color);
-          this.emptySpace(cellAbove.x, cellAbove.y);
+          cell.fill(cellAbove.shape);
+          cellAbove.clear();
         } else {
         }
       }
     });
   }
-}
 
-// insertShape generates a shape and then creates filled spaces starting from (0,0) in the 10 x 20 grid that correspond to that shape
-function insertShape(shape, grid) {
+  // insertShape generates a shape and then creates filled spaces starting from (0,0) in the 10 x 20 grid that correspond to that shape
+insertShape(shape) {
   shape.coordinates.forEach((coordinate) => {
-    grid.fillSpace(coordinate.x, coordinate.y, shape.color);
+    let cell = this.grid[coordinate.y][coordinate.x];
+    cell.fill(shape);
   });
+}
 }
 
 // print grid is just a helper so i can visualize and debug, currently space strings represent empty cells and X strings represent one filled cell
@@ -206,7 +206,7 @@ function performTick() {
       alert("Game Over!");
     }
     let shape = new Shape(getRandomShapeType());
-    insertShape(shape, testGrid);
+    testGrid.insertShape(shape);
   }
   updateCSSGrid(testGrid.grid);
 }
