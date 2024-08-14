@@ -27,6 +27,35 @@ class Shape {
     }
   }
 
+  get dropLocation() {
+    let coordinatesCopy = JSON.parse(JSON.stringify(this.coordinates));
+    return coordinatesCopy.map(
+      (coordinate) => (coordinate.y = coordinate.y + 1)
+    );
+  }
+
+  // filter out specific coordinates that are stacked on top of each other
+  get bottomRow() {
+    let row = [];
+    this.coordinates.forEach((coordinate) => {
+      let coordinateBelow = { x: coordinate.x, y: coordinate.y + 1 };
+      // check to see if you can find the cell directly below in the shape
+      let isNotInBottomRow = this.coordinates.find(
+        (coordinate) =>
+          JSON.stringify(coordinate) === JSON.stringify(coordinateBelow)
+      );
+      if (!isNotInBottomRow) {
+        row.push(coordinate);
+      }
+    });
+    return row
+  }
+
+  // the hasLanded getter should take information given by the grid to determine whether the shape has hit another shape
+  // if ANY cell in the bottom row of the shape has a full cell beneath it, the shape has landed
+  // how to get bottom row? calculate bottom row?
+  get hasLanded() {}
+
   // the shift methods are for translating the coordinates of the shape from left to right
   // todo: put long coordinates into variables
   shiftLeft() {
@@ -53,16 +82,17 @@ class Shape {
 
   // the drop down method is for translating the coordinates down
   dropDown() {
-    let hasHitBottom = this.coordinates.some(
-      (coordinate) => coordinate.y === 19
-    );
-    if (!hasHitBottom && !this.hasLanded) {
-      // move it down
-    } else if (hasHitBottom) {
-      this.hasLanded = true;
-    } else {
-      return;
-    }
+    this.coordinates.map((coordinate) => (coordinate.y = coordinate.y + 1));
+    // let hasHitBottom = this.coordinates.some(
+    //   (coordinate) => coordinate.y === 19
+    // );
+    // if (!hasHitBottom && !this.hasLanded) {
+    //   // move it down
+    // } else if (hasHitBottom) {
+    //   this.hasLanded = true;
+    // } else {
+    //   return;
+    // }
   }
 }
 
@@ -197,9 +227,7 @@ class Grid {
     this.activeShapeLocation = JSON.parse(JSON.stringify(shape.coordinates));
   }
 
-  dropActiveShape(shape) {
-    
-  }
+  dropActiveShape(shape) {}
 
   updateActiveShapeLocation() {
     this.activeShapeLocation.forEach((coordinate) => {
