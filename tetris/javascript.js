@@ -63,7 +63,6 @@ class Shape {
     this.bottomRow.forEach((cell) => {
       let cellBeneath = { x: cell.x, y: cell.y + 1 };
       if (occupiedNonShapeSpaces.length > 0) {
-        console.log(stringifiedOccupiedNonShapeSpaces);
         let isPresentInOccupiedSpaces =
           stringifiedOccupiedNonShapeSpaces.includes(
             JSON.stringify(cellBeneath)
@@ -236,6 +235,8 @@ class Grid {
   // }
 
   // generates a shape and then creates filled spaces starting from (0,0) in the 10 * 20 grid that correspond to that shape
+  // todo: refactor method so it inserts shape one row at a time
+  // todo: insert in the middle of the grid instead of top left
   insertActiveShape(shape) {
     this.activeShape = shape;
     shape.coordinates.forEach((coordinate) => {
@@ -245,7 +246,7 @@ class Grid {
     this.activeShapeLocation = JSON.parse(JSON.stringify(shape.coordinates));
   }
 
-// updates the location of the active shape
+  // updates the location of the active shape
   updateActiveShapeLocation() {
     this.activeShapeLocation.forEach((coordinate) => {
       let cell = this.grid[coordinate.y][coordinate.x];
@@ -282,20 +283,20 @@ function printGrid(grid) {
 
 // completely refactor perform tick, todo: add performTick to grid class
 // function performTick() {
-  // let gridBefore = JSON.stringify(testGrid.grid);
-  // dropAllPieces(testGrid);
-  // let gridAfter = JSON.stringify(testGrid.grid);
-  // if (gridBefore === gridAfter) {
-  // stop inserting and end game if there are any filled cells in the top row
-  //   let hasShapesInTopRow =
-  //     testGrid.grid[0].filter((cell) => !cell.empty).length > 0;
-  //   if (hasShapesInTopRow) {
-  //     alert("Game Over!");
-  //   }
-  //   let shape = new Shape(getRandomShapeType());
-  //   testGrid.insertActiveShape(shape);
-  // }
-  // updateCSSGrid(testGrid.grid);
+// let gridBefore = JSON.stringify(testGrid.grid);
+// dropAllPieces(testGrid);
+// let gridAfter = JSON.stringify(testGrid.grid);
+// if (gridBefore === gridAfter) {
+// stop inserting and end game if there are any filled cells in the top row
+//   let hasShapesInTopRow =
+//     testGrid.grid[0].filter((cell) => !cell.empty).length > 0;
+//   if (hasShapesInTopRow) {
+//     alert("Game Over!");
+//   }
+//   let shape = new Shape(getRandomShapeType());
+//   testGrid.insertActiveShape(shape);
+// }
+// updateCSSGrid(testGrid.grid);
 // }
 
 // random number generator for each shape case
@@ -317,7 +318,14 @@ testGrid.updateCSSGrid();
 // if it has done neither, it drops the active shape down one row and tells the grid and the css that the shape has dropped
 function updateGrid() {
   if (testGrid.activeShape.hasLanded) {
-    testGrid.insertActiveShape(new Shape(getRandomShapeType()));
+    let piecesInTopRow = testGrid.occupiedSpaces.filter(
+      (occupiedSpace) => occupiedSpace.y === 0
+    );
+    if (piecesInTopRow.length === 0) {
+      testGrid.insertActiveShape(new Shape(getRandomShapeType()));
+    } else {
+      alert("GAME OVER!");
+    }
   } else {
     if (
       testGrid.activeShape.hasOccupiedSpaceBeneath(
@@ -325,12 +333,8 @@ function updateGrid() {
       ) ||
       testGrid.activeShape.hasHitBottom
     ) {
-      console.log(
-        testGrid.activeShape.hasOccupiedSpaceBeneath(
-          testGrid.occupiedNonShapeSpaces
-        )
-      );
       testGrid.activeShape.hasLanded = true;
+      testGrid.updateCSSGrid();
     } else {
       testGrid.activeShape.dropDown();
       testGrid.updateActiveShapeLocation();
@@ -343,6 +347,7 @@ function updateGrid() {
 window.setInterval(updateGrid, 500);
 
 // listens for left, right, and down keybinds
+// todo: refactor left and right shift methods so the active shape can't erase any shapes that are beside it
 window.addEventListener("keydown", function (moveActiveShape) {
   switch (moveActiveShape.keyCode) {
     case 37:
