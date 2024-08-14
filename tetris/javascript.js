@@ -1,9 +1,9 @@
 // NOTE ON GAMEPLAY: in tetris, everything lands where it lands. it drops down ONE if the row beneath it is cleared, it does not fall into the empty space.
 
-// creates an object with properties for shape type and a list of coordinates that it occupies as well as a color
+// constructs a shape with the properties coordinates (an array of objects), a color (a string), and hasLanded (a boolean)
+// for simplicity's sake, the only shapes i'm currently making are squares and rectangles
 class Shape {
   hasLanded = false;
-  // for simplicity's sake, the only shapes i'm currently making are squares and rectangles
   constructor(randomNum) {
     switch (randomNum) {
       case 0:
@@ -27,19 +27,14 @@ class Shape {
     }
   }
 
-  get dropLocation() {
-    let coordinatesCopy = JSON.parse(JSON.stringify(this.coordinates));
-    return coordinatesCopy.map(
-      (coordinate) => (coordinate.y = coordinate.y + 1)
-    );
-  }
-
-  // filter out specific coordinates that are stacked on top of each other
+  // returns an array of objects containing the coordinates of the shape that are at the bottom row of the shape
+  // todo: rename to bottom edge? come up with better name
   get bottomRow() {
     let row = [];
     this.coordinates.forEach((coordinate) => {
       let coordinateBelow = { x: coordinate.x, y: coordinate.y + 1 };
       // check to see if you can find the cell directly below in the shape
+      // todo: refactor so it's not testing for double negatives
       let isNotInBottomRow = this.coordinates.find(
         (coordinate) =>
           JSON.stringify(coordinate) === JSON.stringify(coordinateBelow)
@@ -51,13 +46,12 @@ class Shape {
     return row;
   }
 
+  // returns a boolean for if any part of the shape has reached 19 on the y axis or not
   get hasHitBottom() {
     return this.coordinates.some((coordinate) => coordinate.y === 19);
   }
 
-  // the hasOccupiedSpaceBeneath method should take information given by the grid to determine whether the shape has hit another shape
-  // if ANY cell in the bottom row of the shape has a full cell beneath it, return TRUE. else, FALSE.
-
+  // takes an array of occupied spaces that do not belong to the shape and checks if any of those spaces are directly beneath the shape. returns a boolean
   hasOccupiedSpaceBeneath(occupiedNonShapeSpaces) {
     let hasOccupiedSpaceBeneath = false;
     let stringifiedOccupiedNonShapeSpaces = [];
@@ -69,6 +63,7 @@ class Shape {
     this.bottomRow.forEach((cell) => {
       let cellBeneath = { x: cell.x, y: cell.y + 1 };
       if (occupiedNonShapeSpaces.length > 0) {
+        console.log(stringifiedOccupiedNonShapeSpaces);
         let isPresentInOccupiedSpaces =
           stringifiedOccupiedNonShapeSpaces.includes(
             JSON.stringify(cellBeneath)
@@ -83,7 +78,6 @@ class Shape {
   }
 
   // the shift methods are for translating the coordinates of the shape from left to right
-  // todo: put long coordinates into variables
   shiftLeft() {
     let hasHitLeftSide = this.coordinates.some(
       (coordinate) => coordinate.x === 0
@@ -116,12 +110,12 @@ class Shape {
   }
 }
 
-// the cell class creates one cell for the grid with properties for whether it is empty or not, the color (this will always be none if it is empty), and the x and y coordinates
+// constructs a cell object with properties empty (boolean), shape (string, default null) and color (string, default null)
+// todo: determine whether shape property is redundant or if it can be used in a refactor
 class Cell {
   empty = true;
   shape = null;
   color = null;
-  // fixed = false;
 
   constructor(x, y) {
     this.x = x;
@@ -135,7 +129,7 @@ class Cell {
     this.color = shape.color;
   }
 
-  // converts a cell from full to empty
+  // converts a cell from full to empty and resets color to null
   clear() {
     this.empty = true;
     this.shape = null;
@@ -143,12 +137,13 @@ class Cell {
   }
 }
 
-// the grid class creates and handles a 10 x 20 grid of cells
+// creates a grid object with property grid (an array, later updated to a 2d array represeting a 10 * 20 grid), activeShape (a shape object, default null), occupiedSpaces (an array of objects), nonShapeOccupiedSpaces (an array of objects), and occupiedSpacesCoordinates (an array of arrays)
+// todo: determine whether occupiedSpacesCoordinates is redundant
 class Grid {
   grid = new Array();
   activeShape = null;
 
-  // this getter returns an array of cells identical to the cells that are currently not empty in the grid
+  // returns an array of cells identical to the cells that are currently full
   get occupiedSpaces() {
     const spaces = new Array();
 
@@ -172,6 +167,7 @@ class Grid {
   //   return coordinateArr;
   // }
 
+  // returns an array of cells that are occupied but not part of the active shape
   get occupiedNonShapeSpaces() {
     let shapeCells = [];
     this.activeShape.coordinates.forEach((coordinate) => {
@@ -181,7 +177,8 @@ class Grid {
     return this.occupiedSpaces.filter((space) => !shapeCells.includes(space));
   }
 
-  // builds a 2d array; a 10 x 20 grid of cells
+  // creates a 2d array; a 10 * 20 grid of cells
+  // todo: come up with better name for grid property
   constructor() {
     for (let y = 0; y < 20; y++) {
       const row = new Array();
@@ -192,7 +189,7 @@ class Grid {
     }
   }
 
-  // adds the grid to the css
+  // adds a representation of the grid object to the css
   createCSSGrid() {
     const gridElement = document.getElementById("puzzle-container");
     this.grid.forEach((row) => {
@@ -205,7 +202,7 @@ class Grid {
     });
   }
 
-  // updating the css grid
+  // updates the css representation of the grid
   updateCSSGrid() {
     this.grid.forEach((row) => {
       row.forEach((cell) => {
@@ -219,6 +216,7 @@ class Grid {
     });
   }
 
+  // todo: determine if pullPiecesIntoRow is redundant
   // // looks at any given row of the grid and converts it to what it "should" be on the next tick; ie, it checks to see if there are any pieces above and drops them into itself. still need to get pieces to stay if the row is at the bottom of the grid.
   // pullPiecesIntoRow(rowNum) {
   //   // check to see what spaces are dropping down and drop them.
@@ -237,7 +235,7 @@ class Grid {
   //   });
   // }
 
-  // insertActiveShape generates a shape and then creates filled spaces starting from (0,0) in the 10 x 20 grid that correspond to that shape
+  // generates a shape and then creates filled spaces starting from (0,0) in the 10 * 20 grid that correspond to that shape
   insertActiveShape(shape) {
     this.activeShape = shape;
     shape.coordinates.forEach((coordinate) => {
@@ -247,6 +245,7 @@ class Grid {
     this.activeShapeLocation = JSON.parse(JSON.stringify(shape.coordinates));
   }
 
+// updates the location of the active shape
   updateActiveShapeLocation() {
     this.activeShapeLocation.forEach((coordinate) => {
       let cell = this.grid[coordinate.y][coordinate.x];
@@ -259,7 +258,8 @@ class Grid {
   }
 }
 
-// print grid is just a helper so i can visualize and debug, currently space strings represent empty cells and X strings represent one filled cell
+// print grid is a helper so i can visualize and debug
+// space strings represent empty cells and X strings represent one filled cell
 function printGrid(grid) {
   console.log("____________");
   grid.grid.forEach((row) => {
@@ -273,6 +273,7 @@ function printGrid(grid) {
 }
 
 // // dropAllPieces drops every row in the grid once
+// // todo: determine whether dropAllPieces is redundant
 // function dropAllPieces(grid) {
 //   for (let i = grid.grid.length - 1; i >= 1; i--) {
 //     grid.pullPiecesIntoRow(i);
@@ -280,7 +281,7 @@ function printGrid(grid) {
 // }
 
 // completely refactor perform tick, todo: add performTick to grid class
-function performTick() {
+// function performTick() {
   // let gridBefore = JSON.stringify(testGrid.grid);
   // dropAllPieces(testGrid);
   // let gridAfter = JSON.stringify(testGrid.grid);
@@ -295,8 +296,9 @@ function performTick() {
   //   testGrid.insertActiveShape(shape);
   // }
   // updateCSSGrid(testGrid.grid);
-}
+// }
 
+// random number generator for each shape case
 function getRandomShapeType() {
   let shapeCases = [0, 1];
   let num = Math.floor(Math.random() * shapeCases.length + 1);
@@ -309,11 +311,14 @@ testGrid.createCSSGrid();
 testGrid.insertActiveShape(new Shape(getRandomShapeType()));
 testGrid.updateCSSGrid();
 
+// checks to see if the active shape has landed and inserts a new shape that becomes the active shape if it has
+// if the active shape has not landed, checks whether the active shape has pieces beneath or has hit the bottom
+// if it has done either, sets the active shape to hasLanded
+// if it has done neither, it drops the active shape down one row and tells the grid and the css that the shape has dropped
 function updateGrid() {
   if (testGrid.activeShape.hasLanded) {
     testGrid.insertActiveShape(new Shape(getRandomShapeType()));
   } else {
-    // test to see if theres a shape below or if the shape has hit the bottom and if there is the shape has landed
     if (
       testGrid.activeShape.hasOccupiedSpaceBeneath(
         testGrid.occupiedNonShapeSpaces
@@ -334,8 +339,12 @@ function updateGrid() {
   }
 }
 
+// calls the updateGrid function every half second
 window.setInterval(updateGrid, 500);
 
+// listens for left, right, and down keybinds
+// currently case 40 (down arrow) is glitched; it does not check properly if there are any shapes beneath the active shape before moving it down
+// case 37 (left arrow) and case 39 (right arrow) function as expected
 window.addEventListener("keydown", function (moveActiveShape) {
   switch (moveActiveShape.keyCode) {
     case 37:
