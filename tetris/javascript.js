@@ -55,23 +55,31 @@ class Shape {
     return this.coordinates.some((coordinate) => coordinate.y === 19);
   }
 
-  // the hasSpaceBeneath getter should take information given by the grid to determine whether the shape has hit another shape
-  // if ANY cell in the bottom row of the shape has a full cell beneath it, the shape has landed
+  // the hasOccupiedSpaceBeneath method should take information given by the grid to determine whether the shape has hit another shape
+  // if ANY cell in the bottom row of the shape has a full cell beneath it, return TRUE. else, FALSE.
+
   hasOccupiedSpaceBeneath(occupiedNonShapeSpaces) {
-    let bottomRowCopy = JSON.parse(JSON.stringify(this.bottomRow));
-    let spacesBelowBottomRow = bottomRowCopy.map(
-      (coordinate) => (coordinate.y = coordinate.y + 1)
-    );
-    spacesBelowBottomRow.forEach((spaceBelow) => {
-      if (
-        occupiedNonShapeSpaces.find(
-          (occupiedSpace) =>
-            JSON.stringify(occupiedSpace) === JSON.stringify(spaceBelow)
-        )
-      ) {
-        this.hasLanded = true;
+    let hasOccupiedSpaceBeneath = false;
+    let stringifiedOccupiedNonShapeSpaces = [];
+    occupiedNonShapeSpaces.forEach((occupiedSpace) => {
+      stringifiedOccupiedNonShapeSpaces.push(
+        JSON.stringify({ x: occupiedSpace.x, y: occupiedSpace.y })
+      );
+    });
+    this.bottomRow.forEach((cell) => {
+      let cellBeneath = { x: cell.x, y: cell.y + 1 };
+      if (occupiedNonShapeSpaces.length > 0) {
+        let isPresentInOccupiedSpaces =
+          stringifiedOccupiedNonShapeSpaces.includes(
+            JSON.stringify(cellBeneath)
+          );
+        if (isPresentInOccupiedSpaces) {
+          hasOccupiedSpaceBeneath = true;
+        }
       }
     });
+
+    return hasOccupiedSpaceBeneath;
   }
 
   // the shift methods are for translating the coordinates of the shape from left to right
