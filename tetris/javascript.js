@@ -51,10 +51,15 @@ class Shape {
     return row;
   }
 
+  get hasHitBottom() {
+    return this.coordinates.some((coordinate) => coordinate.y === 19);
+  }
+
   // the hasSpaceBeneath getter should take information given by the grid to determine whether the shape has hit another shape
   // if ANY cell in the bottom row of the shape has a full cell beneath it, the shape has landed
   hasOccupiedSpaceBeneath(occupiedNonShapeSpaces) {
-    let spacesBelowBottomRow = this.bottomRow.map(
+    let bottomRowCopy = JSON.parse(JSON.stringify(this.bottomRow));
+    let spacesBelowBottomRow = bottomRowCopy.map(
       (coordinate) => (coordinate.y = coordinate.y + 1)
     );
     spacesBelowBottomRow.forEach((spaceBelow) => {
@@ -95,10 +100,7 @@ class Shape {
 
   // the drop down method is for translating the coordinates down
   dropDown() {
-    let hasHitBottom = this.coordinates.some(
-      (coordinate) => coordinate.y === 19
-    );
-    if (!hasHitBottom && !this.hasLanded) {
+    if (!this.hasHitBottom && !this.hasLanded) {
       this.coordinates.map((coordinate) => (coordinate.y = coordinate.y + 1));
     } else {
       return;
@@ -303,10 +305,24 @@ function updateGrid() {
   if (testGrid.activeShape.hasLanded) {
     testGrid.insertActiveShape(new Shape(getRandomShapeType()));
   } else {
-    // test to see if theres a shape below and if there is the shape has landed
-    testGrid.activeShape.dropDown();
-    testGrid.updateActiveShapeLocation();
-    testGrid.updateCSSGrid();
+    // test to see if theres a shape below or if the shape has hit the bottom and if there is the shape has landed
+    if (
+      testGrid.activeShape.hasOccupiedSpaceBeneath(
+        testGrid.occupiedNonShapeSpaces
+      ) ||
+      testGrid.activeShape.hasHitBottom
+    ) {
+      console.log(
+        testGrid.activeShape.hasOccupiedSpaceBeneath(
+          testGrid.occupiedNonShapeSpaces
+        )
+      );
+      testGrid.activeShape.hasLanded = true;
+    } else {
+      testGrid.activeShape.dropDown();
+      testGrid.updateActiveShapeLocation();
+      testGrid.updateCSSGrid();
+    }
   }
 }
 
