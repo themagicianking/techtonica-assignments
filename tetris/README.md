@@ -38,6 +38,12 @@ Features:
 - Score is calculated based on how many rows are cleared
 - User is able to enter and save their high score
 
+
+## Revision Phase for Week 2 of the Game
+
+Put game functions on hold in order to work on React components. Things to implement with React will pull from the Features list and meet all requirements listed in Additional Requirements (below).
+- Implement a counter in React which will display the user's current score on the page
+
 ## Additional Requirements: React
 
 - Write a game of your choosing in React

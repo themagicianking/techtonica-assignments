@@ -14,6 +14,7 @@ class Shape {
           { x: 1, y: 1 },
         ];
         this.color = "cyan";
+        this.type = 0;
         break;
       case 1:
         this.coordinates = [
@@ -23,6 +24,7 @@ class Shape {
           { x: 3, y: 0 },
         ];
         this.color = "purple";
+        this.type = 1;
         break;
     }
   }
@@ -106,6 +108,44 @@ class Shape {
     } else {
       return;
     }
+  }
+
+  rotateRight() {
+    switch (this.type) {
+      case 0:
+        break;
+      case 1:
+        {
+          // rotate the damn rectangle
+          // if it's on its side (if bottomrow is four long) then move x to y and vice versa
+          // if it's upright move y to x? i think?
+          // nope
+          // gotta fix it 
+          if (this.bottomRow.length === 4) {
+            this.coordinates.forEach((coordinate) => {
+              let originalX = coordinate.x;
+              let originalY = coordinate.y;
+              coordinate.x = originalY;
+              coordinate.y = originalX;
+            });
+          } else {
+            this.coordinates.forEach((coordinate) => {
+              let originalX = coordinate.x;
+              let originalY = coordinate.y;
+              coordinate.x = originalX + 1;
+              coordinate.y = originalY + -1;
+            });
+          }
+        }
+        break;
+    }
+
+    // ok so for rectangles:
+    // (0,0) (1, 0) (2, 0) (3,0)
+    // (1, -1) (1, 0) (1, 1) (1, 2)
+    // (x + 1, y - 1) (x, y) (x - 1, y + 1) (x - 2, y + 2)
+    // (2, 0) (1, 0) (0, 0) (-1, 0)
+    // (x + 1, y + 1) ()
   }
 }
 
@@ -355,6 +395,10 @@ window.addEventListener("keydown", function (moveActiveShape) {
       testGrid.updateActiveShapeLocation();
       testGrid.updateCSSGrid();
       break;
+    case 38:
+      testGrid.activeShape.rotateRight();
+      testGrid.updateActiveShapeLocation();
+      testGrid.updateCSSGrid();
     case 39:
       testGrid.activeShape.shiftRight();
       testGrid.updateActiveShapeLocation();
