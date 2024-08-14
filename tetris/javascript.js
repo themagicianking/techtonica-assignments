@@ -343,8 +343,6 @@ function updateGrid() {
 window.setInterval(updateGrid, 500);
 
 // listens for left, right, and down keybinds
-// currently case 40 (down arrow) is glitched; it does not check properly if there are any shapes beneath the active shape before moving it down
-// case 37 (left arrow) and case 39 (right arrow) function as expected
 window.addEventListener("keydown", function (moveActiveShape) {
   switch (moveActiveShape.keyCode) {
     case 37:
@@ -358,7 +356,7 @@ window.addEventListener("keydown", function (moveActiveShape) {
       testGrid.updateCSSGrid();
       break;
     case 40:
-      testGrid.activeShape.dropDown();
+      updateGrid();
       testGrid.updateActiveShapeLocation();
       testGrid.updateCSSGrid();
       break;
