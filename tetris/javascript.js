@@ -48,13 +48,26 @@ class Shape {
         row.push(coordinate);
       }
     });
-    return row
+    return row;
   }
 
-  // the hasLanded getter should take information given by the grid to determine whether the shape has hit another shape
+  // the hasSpaceBeneath getter should take information given by the grid to determine whether the shape has hit another shape
   // if ANY cell in the bottom row of the shape has a full cell beneath it, the shape has landed
-  // how to get bottom row? calculate bottom row?
-  get hasLanded() {}
+  hasOccupiedSpaceBeneath(occupiedNonShapeSpaces) {
+    let spacesBelowBottomRow = this.bottomRow.map(
+      (coordinate) => (coordinate.y = coordinate.y + 1)
+    );
+    spacesBelowBottomRow.forEach((spaceBelow) => {
+      if (
+        occupiedNonShapeSpaces.find(
+          (occupiedSpace) =>
+            JSON.stringify(occupiedSpace) === JSON.stringify(spaceBelow)
+        )
+      ) {
+        this.hasLanded = true;
+      }
+    });
+  }
 
   // the shift methods are for translating the coordinates of the shape from left to right
   // todo: put long coordinates into variables
@@ -82,17 +95,14 @@ class Shape {
 
   // the drop down method is for translating the coordinates down
   dropDown() {
-    this.coordinates.map((coordinate) => (coordinate.y = coordinate.y + 1));
-    // let hasHitBottom = this.coordinates.some(
-    //   (coordinate) => coordinate.y === 19
-    // );
-    // if (!hasHitBottom && !this.hasLanded) {
-    //   // move it down
-    // } else if (hasHitBottom) {
-    //   this.hasLanded = true;
-    // } else {
-    //   return;
-    // }
+    let hasHitBottom = this.coordinates.some(
+      (coordinate) => coordinate.y === 19
+    );
+    if (!hasHitBottom && !this.hasLanded) {
+      this.coordinates.map((coordinate) => (coordinate.y = coordinate.y + 1));
+    } else {
+      return;
+    }
   }
 }
 
@@ -219,15 +229,13 @@ class Grid {
 
   // insertActiveShape generates a shape and then creates filled spaces starting from (0,0) in the 10 x 20 grid that correspond to that shape
   insertActiveShape(shape) {
+    this.activeShape = shape;
     shape.coordinates.forEach((coordinate) => {
       let cell = this.grid[coordinate.y][coordinate.x];
       cell.fill(shape);
     });
-    this.activeShape = shape;
     this.activeShapeLocation = JSON.parse(JSON.stringify(shape.coordinates));
   }
-
-  dropActiveShape(shape) {}
 
   updateActiveShapeLocation() {
     this.activeShapeLocation.forEach((coordinate) => {
@@ -296,16 +304,13 @@ function updateGrid() {
     testGrid.insertActiveShape(new Shape(getRandomShapeType()));
   } else {
     // test to see if theres a shape below and if there is the shape has landed
-    testGrid.activeShape.coordinates.map((coordinate) => {
-      coordinate.y = coordinate.y + 1;
-    });
     testGrid.activeShape.dropDown();
     testGrid.updateActiveShapeLocation();
     testGrid.updateCSSGrid();
   }
 }
 
-// window.setInterval(updateGrid, 500);
+window.setInterval(updateGrid, 500);
 
 window.addEventListener("keydown", function (moveActiveShape) {
   switch (moveActiveShape.keyCode) {
@@ -326,5 +331,3 @@ window.addEventListener("keydown", function (moveActiveShape) {
       break;
   }
 });
-
-console.log(testGrid.occupiedNonShapeSpaces);
