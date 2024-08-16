@@ -13,6 +13,7 @@ main {
   height: 800px;
   width: 500px;
   background-color: rgb(58, 58, 58);
+  padding-bottom: 25px;
 }
 
 h1 {
@@ -24,8 +25,8 @@ h1 {
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(20, 1fr);
   align-items: center;
-  height: 80%;
-  width: 80%;
+  height: 95%;
+  width: 65%;
   border: thick solid cyan;
   border-radius: 5px;
 }
