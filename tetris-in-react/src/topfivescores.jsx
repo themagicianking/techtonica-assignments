@@ -1,15 +1,23 @@
 import { PlayerScore } from "./playerscore";
+import { useState } from "react";
+import { GetShapesDropped } from "/Users/tpl1122_1/Desktop/techtonica-assignments/tetris-in-react/javascript.jsx";
 
 export function TopFiveScores() {
+  const [shapesDropped, setShapesDropped] = useState(0);
+
+  function updateShapesDropped() {
+    setShapesDropped(GetShapesDropped());
+  }
+
+  setInterval(updateShapesDropped, 500);
+  
+
   return (
     <>
       <div class="top-five-scores">
         <ol>
-          <PlayerScore initials="ABC" score="10,000"/>
-          <PlayerScore initials="DEF" score="5,000"/>
-          <PlayerScore initials="GHI" score="2,500"/>
-          <PlayerScore initials="JKL" score="1,000" />
-          <PlayerScore initials="MNO" score="500" />
+          <p>Shapes dropped: {shapesDropped} </p>
+          <PlayerScore initials="ABC" score="1000"/>
         </ol>
       </div>
     </>
