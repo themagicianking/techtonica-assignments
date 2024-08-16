@@ -1,0 +1,34 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 800px;
+  width: 500px;
+  background-color: rgb(58, 58, 58);
+}
+
+h1 {
+  color: cyan;
+}
+
+#puzzle-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  align-items: center;
+  height: 80%;
+  width: 80%;
+  border: thick solid cyan;
+  border-radius: 5px;
+}
+
+.cell {
+  height: 100%;
+  width: 100%;
+}
