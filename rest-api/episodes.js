@@ -10,17 +10,17 @@
 
 const EPISODES = [
   // template object
-  {
-    id: 0,
-    episodeNumber: "string",
-    releaseDate: "string 0000-00-00",
-    duration: "string 00:00",
-    title: "string",
-    description: "string",
-    weather: { title: "string", artist: "string" },
-    actors: ["Cecil Baldwin"],
-    writers: ["Jeffrey Cranor", "Joseph Fink"],
-  },
+  // {
+  //   id: 0,
+  //   episodeNumber: "string",
+  //   releaseDate: "string 0000-00-00",
+  //   duration: "string 00:00",
+  //   title: "string",
+  //   description: "string",
+  //   weather: { title: "string", artist: "string" },
+  //   actors: ["Cecil Baldwin"],
+  //   writers: ["Jeffrey Cranor", "Joseph Fink"],
+  // },
   // actual objects
   {
     id: 0,
@@ -143,3 +143,5 @@ const EPISODES = [
     writers: ["Jeffrey Cranor", "Joseph Fink"],
   },
 ];
+
+export default EPISODES;
