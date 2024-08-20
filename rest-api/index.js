@@ -1,25 +1,29 @@
 import episodes from "./episodes.js";
 import express from "express";
+
 const app = express();
+
+app.use(express.json());
 
 app.get("/rest-api/episodes", (req, res) => {
   res.json(episodes);
 });
 
-// app.post("/rest-api/episodes", (req, res) => {
-//   const newEpisode = {
-//     id: 0,
-//     episodeNumber: "string",
-//     releaseDate: "string 0000-00-00",
-//     duration: "string 00:00",
-//     title: "string",
-//     description: "string",
-//     weather: { title: "string", artist: "string" },
-//     actors: ["Cecil Baldwin"],
-//     writers: ["Jeffrey Cranor", "Joseph Fink"],
-//   };
-//   res.json(newEpisode);
-// });
+app.post("/rest-api/episodes", (req, res) => {
+  console.log(req.body);
+  const newEpisode = {
+    id: req.body.id,
+    episodeNumber: req.body.episodeNumber,
+    releaseDate: req.body.releaseDate,
+    duration: req.body.duration,
+    title: req.body.title,
+    description: req.body.description,
+    weather: req.body.weather,
+    actors: req.body.actors,
+    writers: req.body.writers,
+  };
+  res.json(newEpisode);
+});
 
 // app.put();
 
