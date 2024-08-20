@@ -15,7 +15,6 @@ app.get("/rest-api/episode-item", (req, res) => {
 });
 
 app.post("/rest-api/episodes", (req, res) => {
-  console.log(req.body);
   const newEpisode = {
     id: req.body.id,
     episodeNumber: req.body.episodeNumber,
@@ -30,7 +29,12 @@ app.post("/rest-api/episodes", (req, res) => {
   res.json(newEpisode);
 });
 
-// app.put();
+app.put("/rest-api/episodes-by-year", (req, res) => {
+  let episodeList = episodes.filter(
+    (episode) => parseInt(episode.releaseDate.substring(0, 4)) === req.body.year
+  );
+  res.json(episodeList);
+});
 
 // app.delete();
 
