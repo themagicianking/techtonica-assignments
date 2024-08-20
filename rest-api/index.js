@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/rest-api/episode-list", (req, res) => {
+app.get("/rest-api/episodes", (req, res) => {
   res.json(episodes);
 });
 
