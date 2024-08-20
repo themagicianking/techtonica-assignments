@@ -36,7 +36,11 @@ app.put("/rest-api/episodes-by-year", (req, res) => {
   res.json(episodeList);
 });
 
-// app.delete();
+app.delete("/rest-api/episodes", (req, res) => {
+  episodes.splice(req.body.id, 1);
+  res.status(200);
+  res.json("The episode has been deleted.");
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
