@@ -5,8 +5,13 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/rest-api/episodes", (req, res) => {
+app.get("/rest-api/episode-list", (req, res) => {
   res.json(episodes);
+});
+
+app.get("/rest-api/episode-item", (req, res) => {
+  const index = parseInt(req.query.id);
+  res.json(episodes[index]);
 });
 
 app.post("/rest-api/episodes", (req, res) => {
