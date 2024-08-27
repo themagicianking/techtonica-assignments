@@ -60,10 +60,10 @@ app.put("/rest-api/episode-list", async (req, res) => {
 app.delete("/rest-api/episode-list", async (req, res) => {
   const database = await pool.connect();
   await database.query(
-    `DELETE FROM episodes WHERE (${episodeNumber}='${req.body.episodeNumber}')`
+    `DELETE FROM episodes WHERE episodeNumber = '${req.body.episodeNumber}'`
   );
   res.status(200);
-  res.json("The episode has been deleted.");
+  res.json(`Episode number ${req.body.episodeNumber} has been deleted.`);
 });
 
 const port = process.env.PORT || 3000;
