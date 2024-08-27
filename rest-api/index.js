@@ -24,7 +24,9 @@ app.get("/rest-api/episode-list", async (req, res) => {
 app.get("/rest-api/episode", async (req, res) => {
   const index = parseInt(req.query.episodeNumber);
   const database = await pool.connect();
-  const episode = await database.query(`SELECT * FROM episodes WHERE episodeNumber = '${index}'`);
+  const episode = await database.query(
+    `SELECT * FROM episodes WHERE episodeNumber = '${index}'`
+  );
   database.release();
   res.json(episode.rows);
 });
@@ -39,7 +41,7 @@ app.post("/rest-api/episode-list", async (req, res) => {
   await database.query(
     `INSERT INTO episodes VALUES ('${newEpisode.episodeNumber}', '${newEpisode.title}')`
   );
-  res.json(newEpisode);
+  res.json(`Episode number ${newEpisode.episodeNumber} with title ${newEpisode.title} has been added.`);
 });
 
 app.put("/rest-api/episodes-by-year", async (req, res) => {
