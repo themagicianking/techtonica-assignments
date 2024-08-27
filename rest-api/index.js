@@ -29,7 +29,7 @@ app.get("/rest-api/episode", async (req, res) => {
   res.json(episode.rows);
 });
 
-app.post("/rest-api/episodes", async (req, res) => {
+app.post("/rest-api/episode-list", async (req, res) => {
   const newEpisode = {
     episodeNumber: req.body.episodeNumber,
     title: req.body.title,
