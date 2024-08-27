@@ -41,20 +41,26 @@ app.post("/rest-api/episode-list", async (req, res) => {
   await database.query(
     `INSERT INTO episodes VALUES ('${newEpisode.episodeNumber}', '${newEpisode.title}')`
   );
-  res.json(`Episode number ${newEpisode.episodeNumber} with title ${newEpisode.title} has been added.`);
-});
-
-app.put("/rest-api/episodes-by-year", async (req, res) => {
-  let episodeList = episodes.filter(
-    (episode) => parseInt(episode.releaseDate.substring(0, 4)) === req.body.year
+  res.json(
+    `Episode number ${newEpisode.episodeNumber} with title ${newEpisode.title} has been added.`
   );
-  res.json(episodeList);
 });
 
-app.delete("/rest-api/episodes", async (req, res) => {
+app.put("/rest-api/episode-list", async (req, res) => {
+  // todo: replace episodeNumber with id where appropriate
+  const episodeNumber = req.body.episodeNumber;
+  const newTitle = req.body.title;
   const database = await pool.connect();
   await database.query(
-    `DELETE FROM episodes WHERE (${episodeNumber}='${req.episodeNumber}')`
+    `UPDATE episodes SET title = '${newTitle}' WHERE episodeNumber = '${episodeNumber}'`
+  );
+  res.json(`Episode number ${episodeNumber} title changed to ${newTitle}.`);
+});
+
+app.delete("/rest-api/episode-list", async (req, res) => {
+  const database = await pool.connect();
+  await database.query(
+    `DELETE FROM episodes WHERE (${episodeNumber}='${req.body.episodeNumber}')`
   );
   res.status(200);
   res.json("The episode has been deleted.");
