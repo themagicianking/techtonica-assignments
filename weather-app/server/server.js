@@ -1,14 +1,16 @@
 import express from "express";
+import cors from "cors";
 import "dotenv/config";
 const app = express();
 const port = process.env.PORT;
+app.use(cors());
+app.use(express());
 
 app.get("/weather", (req, res) => {
-  // const city = req.query.cityName;
-  const city = "Richmond";
+  const city = req.query.cityName;
   const apiKey = process.env.API_KEY;
   const params = new URLSearchParams({
-    // q: req.query.cityName,
+    q: req.query.cityName,
     q: city,
     appid: apiKey,
     unites: "imperial",
