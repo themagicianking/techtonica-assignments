@@ -1,13 +1,3 @@
-// NOTE #1: release dates are taken from apple podcasts, duration is taken from spotify. (there shouldn't be any discrepancies, but if there are.) actors and writers are listed in alphabetical order by last name, regardless of contribution size. Unsure what to do in the future for anomaly episodes (those with multiple weathers, those that are rereleases, and episodes with multiple parts)
-
-// NOTE #2: double quotes need to be added bc JSON (prettier keeps getting rid of them). Either wait and do this at the end with find and replace or figure out how to fix prettier to ignore that particular formatting thing for this file only.
-
-// NOTE #3: release dates are using ISO 8601. until i find something better, episode length is given in the format of 00:00 with the first two numbers representing minutes and the second two representing seconds.
-
-// NOTE #4: rebuilding using RSS feed data
-
-// NOTE #5: create year from date
-
 const EPISODES = [
   // template object
   // {

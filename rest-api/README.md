@@ -1,5 +1,12 @@
 A RESTful API created for Techtonica.
 
+Notes:
+- actors and writers are listed in alphabetical order by last name, regardless of contribution size.
+- Unsure what to do in the future for anomaly episodes (those with multiple weathers, those that are rereleases, and episodes with multiple parts)
+- release dates are using ISO 8601. until i find something better, episode length is given in the format of 00:00 with the first two numbers representing minutes and the second two representing seconds.
+- eventually rebuilding the databaseusing RSS feed data
+- create year (instead of season) from release date
+
 # Project guidelines:
 
 - Change the information inside the file books.js to have your data (we suggest books, but if you want to use any other data, it's ok)
