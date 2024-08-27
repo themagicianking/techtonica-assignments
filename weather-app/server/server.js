@@ -8,8 +8,9 @@ app.get("/weather", (req, res) => {
   const city = "Richmond";
   const apiKey = process.env.API_KEY;
   const params = new URLSearchParams({
-    q: req.query.cityName,
-    appid: process.env.API_KEY,
+    // q: req.query.cityName,
+    q: city,
+    appid: apiKey,
     unites: "imperial",
   });
   const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
