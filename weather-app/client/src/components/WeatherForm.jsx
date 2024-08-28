@@ -32,12 +32,17 @@ function WeatherForm() {
 
   return (
     <>
-      <WeatherDisplay
-        className={displayClass}
-        cityName={cityName}
-        temperature={temp}
-        description={desc}
-      ></WeatherDisplay>
+      {cityName.length > 0 ? (
+        <WeatherDisplay
+          className={displayClass}
+          cityName={cityName}
+          temperature={temp}
+          description={desc}
+        ></WeatherDisplay>
+      ) : (
+        <h3>Enter your city of choice</h3>
+      )}
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="city">Destination: </label>
         <input value={userCity || ""} onChange={handleChange} id="city"></input>
