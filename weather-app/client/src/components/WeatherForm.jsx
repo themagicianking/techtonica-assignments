@@ -31,16 +31,16 @@ function WeatherForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="city">Destination: </label>
-        <input value={userCity || ""} onChange={handleChange} id="city"></input>
-        <button type="submit">Take me there</button>
-      </form>
       <WeatherDisplay
         cityName={cityName}
         temperature={temp}
         description={desc}
       ></WeatherDisplay>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="city">Destination: </label>
+        <input value={userCity || ""} onChange={handleChange} id="city"></input>
+        <button type="submit">Take me there</button>
+      </form>
     </>
   );
 }

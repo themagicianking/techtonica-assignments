@@ -1,4 +1,15 @@
-:root {
+body {
+  background-image: url("./assets/desert-day.jpg");
+  background-size: 100vw auto;
+}
+
+/* :root {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+} */
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +76,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
