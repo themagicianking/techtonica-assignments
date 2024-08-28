@@ -6,6 +6,7 @@ function WeatherForm() {
   const [cityName, setCityName] = useState("");
   const [temp, setTemp] = useState("");
   const [desc, setDesc] = useState("");
+  const displayClass = "display-container";
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -32,6 +33,7 @@ function WeatherForm() {
   return (
     <>
       <WeatherDisplay
+        className={displayClass}
         cityName={cityName}
         temperature={temp}
         description={desc}
