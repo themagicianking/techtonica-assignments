@@ -11,6 +11,10 @@ h1, h2, h3 {
   font-style: normal;
 }
 
+p, label, button {
+  font-family: "Barlow Condensed", sans-serif;
+}
+
 .display-container {
   display: flex;
   justify-content: space-around;

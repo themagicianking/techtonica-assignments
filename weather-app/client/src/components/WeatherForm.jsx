@@ -44,7 +44,7 @@ function WeatherForm() {
 
   return (
     <>
-      {cityName.length > 0 ? (
+      {cityName.length != "" ? (
         <WeatherDisplay
           className={displayClass}
           cityName={cityName}
