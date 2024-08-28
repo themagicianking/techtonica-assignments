@@ -6,6 +6,7 @@ function WeatherForm() {
   const [cityName, setCityName] = useState("");
   const [temp, setTemp] = useState("");
   const [desc, setDesc] = useState("");
+  const [errMessage, setErrMessage] = useState("");
   const displayClass = "display-container";
 
   function handleSubmit(e) {
@@ -24,9 +25,20 @@ function WeatherForm() {
         return res.json();
       })
       .then((body) => {
-        setCityName(body.data.name);
-        setTemp(body.data.main.temp);
-        setDesc(body.data.weather[0].description);
+        console.log(body.data);
+        if (body.data.cod == "404") {
+          setErrMessage(body.data.message);
+          setCityName("");
+          setTemp("");
+          setDesc("");
+        } else {
+          setCityName(body.data.name);
+          setTemp(body.data.main.temp);
+          setDesc(body.data.weather[0].description);
+        }
+      })
+      .catch((err) => {
+        setErrMessage(err);
       });
   }
 
@@ -40,7 +52,10 @@ function WeatherForm() {
           description={desc}
         ></WeatherDisplay>
       ) : (
-        <h3>Enter your city of choice</h3>
+        <div>
+          <h3>Enter your city of choice</h3>
+          <p>{errMessage}</p>
+        </div>
       )}
 
       <form onSubmit={handleSubmit}>
