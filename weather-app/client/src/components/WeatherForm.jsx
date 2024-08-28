@@ -1,7 +1,11 @@
 import { useState } from "react";
+import WeatherDisplay from "./WeatherDisplay";
+
 function WeatherForm() {
   const [userCity, setUserCity] = useState("");
-  const [cityData, setCityData] = useState("");
+  const [cityName, setCityName] = useState("");
+  const [temp, setTemp] = useState("");
+  const [desc, setDesc] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,19 +23,24 @@ function WeatherForm() {
         return res.json();
       })
       .then((body) => {
-        setCityData(JSON.stringify(body.data));
+        setCityName(body.data.name);
+        setTemp(body.data.main.temp);
+        setDesc(body.data.weather[0].description);
       });
   }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="city">Destination</label>
+        <label htmlFor="city">Destination: </label>
         <input value={userCity || ""} onChange={handleChange} id="city"></input>
         <button type="submit">Take me there</button>
       </form>
-      <p>{userCity}</p>
-      <p>{cityData}</p>
+      <WeatherDisplay
+        cityName={cityName}
+        temperature={temp}
+        description={desc}
+      ></WeatherDisplay>
     </>
   );
 }
