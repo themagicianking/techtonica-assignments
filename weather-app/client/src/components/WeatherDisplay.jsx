@@ -3,7 +3,7 @@ function WeatherDisplay(props) {
     <>
       <div className={props.className}>
         <h2>{props.cityName}</h2>
-        <p>{props.temperature}</p>
+        <p>{props.temperature}&deg;F</p>
         <p>{props.description}</p>
       </div>
     </>

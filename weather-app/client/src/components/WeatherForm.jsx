@@ -7,6 +7,8 @@ function WeatherForm() {
   const [temp, setTemp] = useState("");
   const [desc, setDesc] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [sunrise, setSunrise] = useState("");
+  const [sunset, setSunset] = useState("");
   const displayClass = "display-container";
 
   function handleSubmit(e) {
@@ -35,7 +37,15 @@ function WeatherForm() {
           setCityName(body.data.name);
           setTemp(body.data.main.temp);
           setDesc(body.data.weather[0].description);
+          setSunrise(body.data.sys.sunrise);
+          setSunset(body.data.sys.sunset);
         }
+      })
+      .then(() => {
+        const currentTime = Date.now();
+        console.log("sunrise:", sunrise, sunrise.length);
+        console.log("sunset", sunset, sunset.length);
+        console.log("current time", currentTime, currentTime.length);
       })
       .catch((err) => {
         setErrMessage(err);
