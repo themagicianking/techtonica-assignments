@@ -8,7 +8,7 @@ app.use(express());
 
 app.get("/", (req, res) => {
   const API_KEY = process.env.API_KEY;
-  const CATEGORY = "cat";
+  const CATEGORY = req.query.category;
   const params = new URLSearchParams({
     client_id: API_KEY,
     query: CATEGORY,
