@@ -7,15 +7,18 @@ app.use(cors());
 app.use(express());
 
 app.get("/", (req, res) => {
-  const url = "https://api.api-ninjas.com/v1/randomimage";
   const API_KEY = process.env.API_KEY;
+  const params = new URLSearchParams({
+    client_id: API_KEY,
+  });
+  const url = `https://api.unsplash.com/photos/random?${params}`;
   console.log(url);
-  fetch(url, { headers: { "X-Api-Key": API_KEY, "Accept": "image/jpg" }})
-    .then((res) => res.blob())
-    .then((blob) => {
-      console.log(blob);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
       // const imageUrl = URL.createObjectURL(blob);
-      res.send({ blob });
+      res.send({ data });
     })
     .catch((err) => {
       console.log(err);
