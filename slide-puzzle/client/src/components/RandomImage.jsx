@@ -31,7 +31,7 @@ function RandomImage() {
 
   return (
     <>
-      <img src={imageUrl} alt={imageAlt} width="500"></img>
+      <img src={imageUrl} alt={imageAlt} width="500" style={{border: "thin solid black"}}></img>
       <form onSubmit={handleSubmit}>
         <input
           list="categories"
