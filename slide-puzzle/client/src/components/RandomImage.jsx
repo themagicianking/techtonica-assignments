@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Puzzle from "./Puzzle";
 
 function RandomImage() {
   const [imageUrl, setImageUrl] = useState("");
@@ -31,7 +32,13 @@ function RandomImage() {
 
   return (
     <>
-      <img src={imageUrl} alt={imageAlt} width="500" style={{border: "thin solid black"}}></img>
+      <img
+        src={imageUrl}
+        alt={imageAlt}
+        width="500"
+        style={{ border: "thin solid black" }}
+      ></img>
+      <Puzzle />
       <form onSubmit={handleSubmit}>
         <input
           list="categories"
