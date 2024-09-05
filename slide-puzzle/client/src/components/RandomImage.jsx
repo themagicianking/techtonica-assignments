@@ -57,6 +57,7 @@ function RandomImage() {
         style={{ border: "thin solid black" }}
       ></img>
       <Puzzle
+        url={imageUrl}
         row0Column0={testObject[0]}
         row0Column1={testObject[1]}
         row0Column2={testObject[2]}
