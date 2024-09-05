@@ -17,7 +17,6 @@ app.get("/", (req, res) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      // const imageUrl = URL.createObjectURL(blob);
       res.send({ data });
     })
     .catch((err) => {
