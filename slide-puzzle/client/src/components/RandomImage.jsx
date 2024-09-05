@@ -39,7 +39,7 @@ function RandomImage() {
         return json.data;
       })
       .then((data) => {
-        setImageUrl(data.urls.raw);
+        setImageUrl(`${data.urls.regular}`);
         setImageAlt(data.alt_description);
       });
   }
@@ -53,7 +53,7 @@ function RandomImage() {
       <img
         src={imageUrl}
         alt={imageAlt}
-        width="500"
+        // width="500"
         style={{ border: "thin solid black" }}
       ></img>
       <Puzzle

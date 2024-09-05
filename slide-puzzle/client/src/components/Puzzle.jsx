@@ -4,22 +4,22 @@ function Puzzle(props) {
   return (
     <>
       <div>
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
-        <img src={props.url} style={{ width: 125, height: 125 }} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
+        <img src={`${props.url}?w=270&h=270&crop=focalpoint`} />
       </div>
     </>
   );
