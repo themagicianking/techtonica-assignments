@@ -27,7 +27,14 @@ function RandomImage() {
     <>
       <img src={imageUrl} alt={imageAlt} width="500"></img>
       <form onSubmit={handleSubmit}>
-        {" "}
+        <input list="categories" />
+        <datalist id="categories">
+          <option value="animals" />
+          <option value="plants" />
+          <option value="city" />
+          <option value="art" />
+          <option value="food" />
+        </datalist>
         <button type="submit">GET IMAGE</button>
       </form>
     </>
