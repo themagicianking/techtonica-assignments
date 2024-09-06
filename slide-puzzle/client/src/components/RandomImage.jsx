@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Puzzle from "./Puzzle";
 
+// put get random image in its own component and use callback function to get category
+// put form in its own component
+
 function RandomImage() {
   const [imageUrl, setImageUrl] = useState("");
   const [imageAlt, setImageAlt] = useState("");
@@ -39,7 +42,7 @@ function RandomImage() {
         return json.data;
       })
       .then((data) => {
-        setImageUrl(`${data.urls.regular}`);
+        setImageUrl(data.urls.regular);
         setImageAlt(data.alt_description);
       });
   }
