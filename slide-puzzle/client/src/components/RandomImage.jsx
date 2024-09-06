@@ -69,8 +69,7 @@ function RandomImage() {
       <Puzzle url={imageUrl} position={position} />
       <form onSubmit={handleSubmit}>
         <label htmlFor="categories">Choose a puzzle category: </label>
-        <select id="categories" onChange={handleCategoryChange}>
-          <option value="select">Select</option>
+        <select id="categories" onChange={handleCategoryChange} required="required">
           <option value="animals">Animals</option>
           <option value="plants">Plants</option>
           <option value="city">City</option>
