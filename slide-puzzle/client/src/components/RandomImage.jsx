@@ -29,6 +29,8 @@ function RandomImage() {
   const [imageAlt, setImageAlt] = useState("");
   const [category, setCategory] = useState("Animals");
   const [position, setPosition] = useState(solvedPosition);
+  const [photographer, setPhotographer] = useState("");
+  const [credit, setCredit] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -54,6 +56,8 @@ function RandomImage() {
       .then((data) => {
         setImageUrl(data.urls.regular);
         setImageAlt(data.alt_description);
+        setCredit(data.user.portfolio_url);
+        setPhotographer("Photo by " + data.user.name);
         setPosition(solvedPosition);
       });
   }
@@ -62,6 +66,7 @@ function RandomImage() {
     <>
       <Puzzle url={imageUrl} position={position} />
       <p>{imageAlt}</p>
+      <p><a href={credit}>{photographer}</a></p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="categories">Choose a puzzle category: </label>
         <select id="categories" onChange={handleCategoryChange}>
