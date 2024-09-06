@@ -27,7 +27,7 @@ function RandomImage() {
 
   const [imageUrl, setImageUrl] = useState("");
   const [imageAlt, setImageAlt] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Animals");
   const [position, setPosition] = useState(solvedPosition);
 
   function handleSubmit(e) {
@@ -60,16 +60,11 @@ function RandomImage() {
 
   return (
     <>
-      {/* <img
-        src={imageUrl}
-        alt={imageAlt}
-        width="500"
-        style={{ border: "thin solid black" }}
-      ></img> */}
       <Puzzle url={imageUrl} position={position} />
+      <p>{imageAlt}</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="categories">Choose a puzzle category: </label>
-        <select id="categories" onChange={handleCategoryChange} required="required">
+        <select id="categories" onChange={handleCategoryChange}>
           <option value="animals">Animals</option>
           <option value="plants">Plants</option>
           <option value="city">City</option>
@@ -77,8 +72,10 @@ function RandomImage() {
           <option value="food">Food</option>
         </select>
         <br></br>
+        <br></br>
         <input type="submit" value="GET PUZZLE"></input>
       </form>
+      <br></br>
       <ShufflePuzzle handleShuffle={handleShuffle} />
     </>
   );
