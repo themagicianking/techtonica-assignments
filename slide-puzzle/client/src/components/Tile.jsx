@@ -3,8 +3,6 @@ function Tile(props) {
   let column = null;
   let row = null;
 
-  console.log(props.position);
-
   switch (props.position.column) {
     case 0:
       column = 4;

@@ -5,14 +5,37 @@ import Puzzle from "./Puzzle";
 // put form in its own component
 
 function RandomImage() {
+  const solvedPosition = [
+    { row: 0, column: 0 },
+    { row: 0, column: 1 },
+    { row: 0, column: 2 },
+    { row: 0, column: 3 },
+    { row: 1, column: 0 },
+    { row: 1, column: 1 },
+    { row: 1, column: 2 },
+    { row: 1, column: 3 },
+    { row: 2, column: 0 },
+    { row: 2, column: 1 },
+    { row: 2, column: 2 },
+    { row: 2, column: 3 },
+    { row: 3, column: 0 },
+    { row: 3, column: 1 },
+    { row: 3, column: 2 },
+    { row: 3, column: 3 },
+  ];
+
   const [imageUrl, setImageUrl] = useState("");
   const [imageAlt, setImageAlt] = useState("");
   const [category, setCategory] = useState("");
+  const [position, setPositon] = useState(solvedPosition);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setCategory(e.target.value);
     fetchImage();
+  }
+
+  function handleChange(e) {
+    setCategory(e.target.value);
   }
 
   async function fetchImage() {
@@ -27,10 +50,6 @@ function RandomImage() {
         setImageUrl(data.urls.regular);
         setImageAlt(data.alt_description);
       });
-  }
-
-  function handleInputChange(event) {
-    setCategory(event.target.value);
   }
 
   function GetPosition() {
@@ -55,34 +74,30 @@ function RandomImage() {
 
     const shuffledPosition = solvedPosition.sort((a, b) => 0.5 - Math.random());
 
-    console.log(shuffledPosition);
-
     return shuffledPosition;
   }
 
   return (
     <>
-      <img
+      {/* <img
         src={imageUrl}
         alt={imageAlt}
         width="500"
         style={{ border: "thin solid black" }}
-      ></img>
-      <Puzzle url={imageUrl} position={GetPosition()} />
+      ></img> */}
+      <Puzzle url={imageUrl} position={position} />
       <form onSubmit={handleSubmit}>
-        <input
-          list="categories"
-          value={category}
-          onChange={handleInputChange}
-        />
-        <datalist id="categories">
-          <option value="animals" />
-          <option value="plants" />
-          <option value="city" />
-          <option value="art" />
-          <option value="food" />
-        </datalist>
-        <button type="submit">GET IMAGE</button>
+        <label htmlFor="categories">Choose a puzzle category: </label>
+        <select id="categories" onChange={handleChange}>
+          <option value="select">Select</option>
+          <option value="animals">Animals</option>
+          <option value="plants">Plants</option>
+          <option value="city">City</option>
+          <option value="art">Art</option>
+          <option value="food">Food</option>
+        </select>
+        <br></br>
+        <input type="submit" value="GET PUZZLE"></input>
       </form>
     </>
   );
