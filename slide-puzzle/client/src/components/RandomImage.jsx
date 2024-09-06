@@ -56,7 +56,7 @@ function RandomImage() {
       <img
         src={imageUrl}
         alt={imageAlt}
-        // width="500"
+        width="500"
         style={{ border: "thin solid black" }}
       ></img>
       <Puzzle
