@@ -3,7 +3,9 @@ function Tile(props) {
   let column = null;
   let row = null;
 
-  switch (props.column) {
+  console.log(props.position);
+
+  switch (props.position.column) {
     case 0:
       column = 4;
       break;
@@ -18,7 +20,7 @@ function Tile(props) {
       break;
   }
 
-  switch (props.row) {
+  switch (props.position.row) {
     case 0:
       row = 0;
       break;
