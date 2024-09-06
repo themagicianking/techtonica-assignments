@@ -34,7 +34,7 @@ function RandomImage() {
   }
 
   function GetPosition() {
-    let testObject = [
+    const solvedPosition = [
       { row: 0, column: 0 },
       { row: 0, column: 1 },
       { row: 0, column: 2 },
@@ -52,7 +52,12 @@ function RandomImage() {
       { row: 3, column: 2 },
       { row: 3, column: 3 },
     ];
-    return testObject;
+
+    const shuffledPosition = solvedPosition.sort((a, b) => 0.5 - Math.random());
+
+    console.log(shuffledPosition);
+
+    return shuffledPosition;
   }
 
   return (
