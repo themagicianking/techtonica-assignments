@@ -17,8 +17,20 @@ const MyForm = ({ onSaveEvent, editingEvent, onUpdateEvent }) => {
 
     };
 
+    const handleLocationChange = (event) => {
+      const eventlocation = event.target.value;
+      setEvent((event) => ({ ...event, eventlocation }));
+
+  };
+
+  const handleDateChange = (event) => {
+    const eventdate = event.target.value;
+    setEvent((event) => ({ ...event, eventdate }));
+
+};
+
     const clearForm = () => {
-        setEvent({ firstname: "", lastname: "", is_current: false })
+        setEvent({ eventname: "", eventlocation: "", eventdate: null })
     }
 
     //A function to handle the post request
@@ -71,14 +83,36 @@ const MyForm = ({ onSaveEvent, editingEvent, onUpdateEvent }) => {
     return (
         <Form className='form-events' onSubmit={handleSubmit}>
             <Form.Group>
-                <Form.Label>First Name</Form.Label>
+                <Form.Label>Event Name</Form.Label>
                 <input
                     type="text"
-                    id="add-user-name"
-                    placeholder="First Name"
+                    id="add-event-name"
+                    placeholder="Event Name"
                     required
-                    value={event.firstname}
+                    value={event.eventname}
                     onChange={handleNameChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Location</Form.Label>
+                <input
+                    type="text"
+                    id="add-event-location"
+                    placeholder="Location"
+                    required
+                    value={event.eventlocation}
+                    onChange={handleLocationChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Date</Form.Label>
+                <input
+                    type="text"
+                    id="add-event-date"
+                    placeholder="Date"
+                    required
+                    value={event.eventdate}
+                    onChange={handleDateChange}
                 />
             </Form.Group>
             <Form.Group>
