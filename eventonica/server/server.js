@@ -26,10 +26,9 @@ app.get("/api/events", async (req, res) => {
 // create a get request for events whose names match a search term
 app.get("/api/events/search", async (req, res) => {
   const EVENTNAME = req.query.usersearch;
-  console.log(EVENTNAME);
   try {
     const { rows: events } = await db.query(
-      `SELECT * FROM events WHERE eventname=${EVENTNAME}`
+      `SELECT * FROM events WHERE eventname='${EVENTNAME}'`
     );
     res.send(events);
   } catch (e) {

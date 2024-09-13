@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
+import SearchResult from "./SearchResult";
 
 function Search() {
   const [usersearch, setUsersearch] = useState("");
@@ -33,19 +34,15 @@ function Search() {
           Search
         </Button>
       </Form>
-      {usersearch != "" ? (
+      {events.length > 0 ? (
         <div className="list-events">
-          <h2>All Events</h2>
+          <h2>Found {events.length} events:</h2>
           <ul>
             {events.map((event) => {
               return (
                 <li key={event.id}>
                   {" "}
-                  <Event
-                    event={event}
-                    toDelete={onDelete}
-                    toUpdate={onUpdate}
-                  />
+                  <SearchResult event={event} />
                 </li>
               );
             })}
