@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 
 function Search() {
-  const [usersearch, setUsersearch] = useState(undefined);
+  const [usersearch, setUsersearch] = useState("");
   const [events, setEvents] = useState([]);
 
   function getEvents() {
-    fetch(`http://localhost:8080/api/events/search=${usersearch}`)
+    fetch(`http://localhost:8080/api/events/search?usersearch=${usersearch}`)
       .then((res) => res.json())
       .then((events) => setEvents(events));
   }
