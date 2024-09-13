@@ -27,7 +27,7 @@ SET default_table_access_method = heap;
 DROP TABLE IF EXISTS events; 
 
 CREATE TABLE events (
-    id integer NOT NULL,
+    id serial primary key,
     eventname VARCHAR(255),
     eventlocation VARCHAR(255),
     eventdate date

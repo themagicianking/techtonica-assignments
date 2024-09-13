@@ -30,7 +30,7 @@ const MyForm = ({ onSaveEvent, editingEvent, onUpdateEvent }) => {
 };
 
     const clearForm = () => {
-        setEvent({ eventname: "", eventlocation: "", eventdate: null })
+        setEvent({ eventname: "", eventlocation: "", eventdate: "" })
     }
 
     //A function to handle the post request
@@ -54,7 +54,7 @@ const MyForm = ({ onSaveEvent, editingEvent, onUpdateEvent }) => {
 
     //A function to handle the post request
     const putEvent = (toEditEvent) => {
-        return fetch(`http://localhost:8080/api/events/${toEditEvent.id}`, {
+        return fetch(`https://localhost:8080/api/events/${toEditEvent.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(toEditEvent),
@@ -107,7 +107,7 @@ const MyForm = ({ onSaveEvent, editingEvent, onUpdateEvent }) => {
             <Form.Group>
                 <Form.Label>Date</Form.Label>
                 <input
-                    type="text"
+                    type="date"
                     id="add-event-date"
                     placeholder="Date"
                     required

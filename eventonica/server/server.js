@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const path = require("path");
 const db = require("./db/db-connection.js");
 
 const app = express();
@@ -36,6 +35,7 @@ app.post("/api/events", async (req, res) => {
       "INSERT INTO events(eventname, eventlocation, eventdate) VALUES($1, $2, $3) RETURNING *",
       [newEvent.eventname, newEvent.eventlocation, newEvent.eventdate]
     );
+    console.log("post request being made here");
     console.log(result.rows[0]);
     res.json(result.rows[0]);
   } catch (e) {
