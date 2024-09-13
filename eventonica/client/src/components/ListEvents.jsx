@@ -62,7 +62,7 @@ const ListEvents = () => {
     return (
         <div className="mybody">
         <div className="list-events">
-            <h2>Techtonica Participants </h2>
+            <h2>All Events</h2>
             <ul>
                 {events.map((event) => {
                     return <li key={event.id}> <Event event={event} toDelete={onDelete} toUpdate={onUpdate} /></li>
