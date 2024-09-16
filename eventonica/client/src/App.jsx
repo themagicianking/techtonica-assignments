@@ -1,12 +1,12 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ListEvents from "./components/ListEvents";
-import Search from "./components/Search";
+import ListSearchResults from "./components/ListSearchResults";
 
 function App() {
   return (
     <div className="App">
-      <Search />
+      <ListSearchResults />
       <ListEvents />
     </div>
   );
