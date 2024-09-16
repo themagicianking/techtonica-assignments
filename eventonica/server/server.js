@@ -79,6 +79,7 @@ app.put("/api/events/:eventId", async (req, res) => {
     id: req.body.id,
     name: req.body.eventname,
     location: req.body.eventlocation,
+    time: req.body.eventdate
   };
   console.log("In the server from the url - the event id", eventId);
   console.log(

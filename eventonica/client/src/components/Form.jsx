@@ -107,7 +107,7 @@ const MyForm = ({ onSaveEvent, editingEvent, onUpdateEvent }) => {
             <Form.Group>
                 <Form.Label>Date</Form.Label>
                 <input
-                    type="date"
+                    type="datetime"
                     id="add-event-date"
                     placeholder="Date"
                     required
