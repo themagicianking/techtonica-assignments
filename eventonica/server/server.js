@@ -28,7 +28,7 @@ app.get("/api/events/search", async (req, res) => {
   const EVENTNAME = req.query.usersearch;
   try {
     const { rows: events } = await db.query(
-      `SELECT * FROM events WHERE eventname='${EVENTNAME}'`
+      `SELECT * FROM events WHERE eventname LIKE '%${EVENTNAME}%'`
     );
     res.send(events);
   } catch (e) {

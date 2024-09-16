@@ -17,7 +17,12 @@ function Search({ onSearch }) {
     <div>
       <Form onSubmit={handleSubmit}>
         <Form.Label>Find an event</Form.Label>
-        <input type="text" value={usersearch} onChange={handleChange}></input>
+        <input
+          type="text"
+          value={usersearch}
+          onChange={handleChange}
+          required
+        ></input>
         <Button type="submit">Search</Button>
       </Form>
     </div>

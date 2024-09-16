@@ -5,7 +5,7 @@ import SearchResult from "./SearchResult";
 
 function ListSearchResults() {
   const [results, setResults] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState(null);
 
   function getResults(usersearch) {
     fetch(`http://localhost:8080/api/events/search?usersearch=${usersearch}`)
